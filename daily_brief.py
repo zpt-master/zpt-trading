@@ -14,7 +14,10 @@ def _news_items(limit=8):
     out=[]
     for line in md.splitlines():
         if "[ACTIONABLE]" in line:
-            out.append(line.strip("- ").strip())
+            t=line.strip("- ").strip()
+            if "=" in t and "keyword" in t:   # skip the legend line
+                continue
+            out.append(t)
         if len(out)>=limit: break
     return out
 
