@@ -106,6 +106,26 @@ class H(BaseHTTPRequestHandler):
                 self.send_header("Content-Length",str(len(body))); self.end_headers(); self.wfile.write(body); return
             except Exception as e:
                 self.send_response(500); self.end_headers(); self.wfile.write(str(e).encode()); return
+        if u.path=="/signal":
+            try:
+                import time as _t, os as _os, json as _j
+                cache="journal/signals_cache.json"
+                if _os.path.exists(cache) and _t.time()-_os.path.getmtime(cache)<300:
+                    return self._send(open(cache).read())
+                from fxintel.signals import build_plan
+                from fxintel.journal import log_plan
+                plans=[]
+                for sym in SYMBOLS:
+                    try: d=intel(sym,"1h")
+                    except Exception: continue
+                    pl=build_plan(sym, d.get("_bars") or [], d, equity_usd=10000.0, risk_pct=1.0)
+                    log_plan(pl); plans.append(pl.__dict__)
+                out={"equity_usd":10000.0,"risk_pct":1.0,"rules":"1% risk, mandatory stop, no martingale",
+                     "count":len(plans),"valid":sum(1 for x in plans if x["valid"]),"plans":plans}
+                _os.makedirs("journal",exist_ok=True); open(cache,"w").write(_j.dumps(out,indent=1))
+                return self._send(_j.dumps(out,indent=1))
+            except Exception as e:
+                return self._send('{"error":"%s"}'%str(e),code=500)
         if u.path=="/product":
             f=os.path.join(HERE,"product.json")
             return self._send(open(f).read() if os.path.exists(f) else "{}")
