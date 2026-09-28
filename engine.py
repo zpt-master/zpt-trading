@@ -75,6 +75,12 @@ def main():
         risk.save(s); log("cycle end: in position"); return
     risk.save(s)
 
+    import os as _os
+    _flag=os.path.join(os.path.dirname(os.path.abspath(__file__)),"pause_news.flag")
+    if _os.path.exists(_flag):
+        import json as _j
+        log(f"news gate: event risk -> no new entries ({_j.load(open(_flag)).get('reason','')[:70]})")
+        return
     ok, why = risk.can_open(s, equity, len(pos))
     if not ok:
         log(f"risk gate closed: {why}"); return

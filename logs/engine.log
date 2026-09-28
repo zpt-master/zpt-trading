@@ -14,3 +14,7 @@
 2026-09-28T16:19:15.251121+00:00 --- cycle end
 2026-09-28T16:19:45.356641+00:00 --- cycle mode=DEMO eq=100425.41 open=0 live=False
 2026-09-28T16:19:46.987820+00:00 --- cycle end
+2026-09-28T16:34:15.307805+00:00 --- cycle mode=DEMO eq=100425.41 open=0 live=True
+2026-09-28T16:34:16.952772+00:00 --- cycle end
+2026-09-28T16:41:08.382168+00:00 --- cycle mode=DEMO eq=100425.41 open=0 live=False
+2026-09-28T16:41:08.382512+00:00 news gate: event risk -> no new entries (Australian Dollar Outlook: AUD/USD Holds 70c Ahead of RBA and CPI - FO)

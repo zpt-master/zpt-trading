@@ -1,0 +1,52 @@
+[
+  {
+    "symbol": "EURUSD",
+    "interval": "1h",
+    "range": "1y",
+    "trades": 38,
+    "win_rate": 0.447,
+    "avg_R": 0.118,
+    "return_pct_1risk": 4.29,
+    "max_dd_pct": -3.94
+  },
+  {
+    "symbol": "GBPUSD",
+    "interval": "1h",
+    "range": "1y",
+    "trades": 38,
+    "win_rate": 0.368,
+    "avg_R": -0.079,
+    "return_pct_1risk": -3.22,
+    "max_dd_pct": -7.86
+  },
+  {
+    "symbol": "USDJPY",
+    "interval": "1h",
+    "range": "1y",
+    "trades": 37,
+    "win_rate": 0.297,
+    "avg_R": -0.257,
+    "return_pct_1risk": -9.29,
+    "max_dd_pct": -13.26
+  },
+  {
+    "symbol": "AUDUSD",
+    "interval": "1h",
+    "range": "1y",
+    "trades": 33,
+    "win_rate": 0.303,
+    "avg_R": -0.242,
+    "return_pct_1risk": -7.9,
+    "max_dd_pct": -11.03
+  },
+  {
+    "symbol": "XAUUSD",
+    "interval": "1h",
+    "range": "1y",
+    "trades": 71,
+    "win_rate": 0.282,
+    "avg_R": -0.296,
+    "return_pct_1risk": -19.33,
+    "max_dd_pct": -25.12
+  }
+]
