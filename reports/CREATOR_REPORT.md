@@ -58,3 +58,17 @@ earning the moment buyers/funds/broker are available.
 
 ## 7. Live verification (last check)
 public: `/health`=200  `/`=200  `/.well-known/x402`=200  `/intel`=402  `/brief`=200
+
+## 8. Money path LIVE-VALIDATED (critical)
+`tests/test_payverify_live.py` proves the payment path against **real Base USDC
+transfers** (public RPC, no wallet needed). Results:
+- garbage proof → rejected (fail-closed)
+- real USDC transfer → **confirmed** (sampled 22,262.909245 USDC tx, verified)
+- real transfer to wrong recipient → rejected
+Conclusion: if a buyer pays USDC to 0x0190..E5D, `/intel` unlocks correctly.
+The ONLY remaining blockers are distribution + a $0 receiving wallet.
+
+## 9. Nukida study (genesis task)
+Studied nukida.co; encoded transferable principles in `knowledge/nukida_lessons.md`
+(AQ > IQ, stop-loss is planned not feared, simple > complex, patience/compounding)
+and mapped each to an enforced engine rule.
