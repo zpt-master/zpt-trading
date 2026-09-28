@@ -1,4 +1,4 @@
-# Daily Market Brief — 2026-09-28 20:21 UTC
+# Daily Market Brief — 2026-09-28 20:23 UTC
 
 _Risk-governed. Honest. No trade is better than a bad trade._
 

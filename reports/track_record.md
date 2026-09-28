@@ -1,4 +1,4 @@
-# Paper Track Record — 2026-09-28 20:16 UTC
+# Paper Track Record — 2026-09-28 20:23 UTC
 
 _Risk-governed signal engine, paper-traded (no broker, no real money). Honest: an empty record means the rules found no edge — which is the point._
 
