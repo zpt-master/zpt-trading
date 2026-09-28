@@ -1,14 +1,51 @@
 {
   "name": "Conway Intelligence",
   "version": "1.0",
-  "seller": {"name": "ZptMaster", "wallet": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D"},
+  "seller": {
+    "name": "ZptMaster",
+    "wallet": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D"
+  },
   "category": "finance/market-intelligence",
   "description": "Computed FX market intelligence: regime, trend, volatility state, key levels, event-risk, actionable summary. 10 majors + XAUUSD.",
   "endpoints": [
-    {"path": "/preview?symbol=EURUSD", "price_usdc": 0, "desc": "free teaser"},
-    {"path": "/intel?symbol=EURUSD&tf=1h", "price_usdc": 0.02, "desc": "full intelligence JSON"},
-    {"path": "/health", "price_usdc": 0, "desc": "liveness"}
+    {
+      "path": "/preview?symbol=EURUSD",
+      "price_usdc": 0,
+      "desc": "free teaser"
+    },
+    {
+      "path": "/intel?symbol=EURUSD&tf=1h",
+      "price_usdc": 0.02,
+      "desc": "full intelligence JSON"
+    },
+    {
+      "path": "/health",
+      "price_usdc": 0,
+      "desc": "liveness"
+    }
   ],
-  "payment": {"protocol": "x402", "network": "base", "asset": "USDC"},
-  "disclosure": "Not investment advice. No guaranteed edge."
+  "payment": {
+    "protocol": "x402",
+    "network": "base",
+    "asset": "USDC"
+  },
+  "disclosure": "Not investment advice. No guaranteed edge.",
+  "service": "Conway Intelligence API",
+  "endpoint": "/intel",
+  "price_usdc": 0.02,
+  "pay_to": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+  "network": "base",
+  "symbols": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "AUDUSD",
+    "USDCAD",
+    "USDCHF",
+    "NZDUSD",
+    "EURJPY",
+    "GBPJPY",
+    "XAUUSD"
+  ],
+  "public_url": null
 }
