@@ -86,6 +86,9 @@ class H(BaseHTTPRequestHandler):
         u=urllib.parse.urlparse(self.path)
         if u.path=="/health":
             return self._send(json.dumps({"ok":True,"paid":bool(PAY_TO),"price_usdc":PRICE_USDC,"symbols":SYMBOLS}))
+        if u.path in ("/docs","/intel/docs"):
+            d=os.path.join(HERE,"docs.html")
+            return self._send(open(d).read() if os.path.exists(d) else "docs missing","text/html")
         if u.path=="/":
             return self._send(("Conway Intelligence API\nGET /intel?symbol=EURUSD&tf=1h  (price %s USDC)\nGET /health\nsymbols: %s\n"%(PRICE_USDC,", ".join(SYMBOLS))),"text/plain")
         if u.path!="/intel":

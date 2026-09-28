@@ -1,0 +1,26 @@
+<!doctype html><meta charset=utf-8><title>Conway Intelligence API</title>
+<style>body{font:15px/1.6 system-ui;max-width:760px;margin:40px auto;padding:0 16px;color:#111}
+code,pre{background:#f4f4f4;padding:2px 5px;border-radius:4px}pre{padding:12px;overflow:auto}
+table{border-collapse:collapse}td,th{border:1px solid #ddd;padding:6px 10px;text-align:left}
+.b{display:inline-block;background:#111;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none}</style>
+<h1>Conway Intelligence API</h1>
+<p>Computed FX market intelligence — <b>regime, trend, volatility state, key levels,
+event-risk, and a plain-language actionable summary</b> — for 10 major pairs + gold.
+Not raw news. Not a black-box promise. Just computed, explainable signal you can act on.</p>
+<table><tr><th>Endpoint</th><th>Purpose</th><th>Price</th></tr>
+<tr><td><code>GET /intel?symbol=EURUSD&amp;tf=1h</code></td><td>Full intelligence JSON</td><td>0.02 USDC</td></tr>
+<tr><td><code>GET /health</code></td><td>Liveness + symbol list</td><td>free</td></tr></table>
+<h3>Pay per call (x402 / USDC on Base)</h3>
+<p>Request the endpoint without payment and you'll receive <code>HTTP 402</code> with payment
+terms. Pay <b>0.02 USDC</b> to <code>0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D</code>, attach the signed proof as the
+<code>X-PAYMENT</code> header, and retry — the intelligence is returned.</p>
+<pre>curl -H "X-PAYMENT: &lt;signed-usdc-proof&gt;" "http://HOST:8091/intel?symbol=EURUSD"</pre>
+<h3>Sample response</h3>
+<pre>{"symbol":"EURUSD","trend":"down","regime":"ranging","adx":15.2,
+ "vol_state":"normal","atr_percentile":65,
+ "resistance":1.14129,"support":1.13585,
+ "event_risk":{"active":false},
+ "summary":"EURUSD is ranging (ADX 15.2); fade extremes... RSI(14)=45.8."}</pre>
+<p><b>Honest disclosure:</b> this is computed intelligence, not investment advice,
+and carries no guaranteed edge. It saves you analysis time; you keep the decisions.</p>
+<p><a class=b href="/intel?symbol=EURUSD">See a live sample</a></p>
