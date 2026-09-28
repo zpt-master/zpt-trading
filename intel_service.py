@@ -95,19 +95,17 @@ class H(BaseHTTPRequestHandler):
         self.end_headers(); self.wfile.write(b)
     def do_GET(self):
         u=urllib.parse.urlparse(self.path)
-    if p=="/news":
-        try:
-            import news_digest as ND, io, contextlib
-            # serve the cached digest if fresh, else regenerate
-            import os, time
-            f="reports/news_digest.md"
-            if not os.path.exists(f) or time.time()-os.path.getmtime(f)>3600:
-                ND.main()
-            body=open(f,"rb").read()
-            self.send_response(200); self.send_header("Content-Type","text/markdown; charset=utf-8")
-            self.send_header("Content-Length",str(len(body))); self.end_headers(); self.wfile.write(body); return
-        except Exception as e:
-            self.send_response(500); self.end_headers(); self.wfile.write(str(e).encode()); return
+        if u.path=="/news":
+            try:
+                import news_digest as ND, os as _os, time as _t
+                f="reports/news_digest.md"
+                if not _os.path.exists(f) or _t.time()-_os.path.getmtime(f)>3600:
+                    ND.main()
+                body=open(f,"rb").read()
+                self.send_response(200); self.send_header("Content-Type","text/markdown; charset=utf-8")
+                self.send_header("Content-Length",str(len(body))); self.end_headers(); self.wfile.write(body); return
+            except Exception as e:
+                self.send_response(500); self.end_headers(); self.wfile.write(str(e).encode()); return
         if u.path=="/product":
             f=os.path.join(HERE,"product.json")
             return self._send(open(f).read() if os.path.exists(f) else "{}")
