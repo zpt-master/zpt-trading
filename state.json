@@ -1,0 +1,10 @@
+{
+  "high_water_balance": 100425.41,
+  "day": "2026-09-28",
+  "day_start_balance": 100425.41,
+  "day_realized": 0.0,
+  "trades_today": 0,
+  "consecutive_losses": 0,
+  "halted": false,
+  "halt_reason": ""
+}
