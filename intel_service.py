@@ -126,6 +126,52 @@ class H(BaseHTTPRequestHandler):
                 return self._send(_j.dumps(out,indent=1))
             except Exception as e:
                 return self._send('{"error":"%s"}'%str(e),code=500)
+        if u.path in ("/.well-known/x402","/discovery/resources"):
+            # self-describing x402 manifest so crawlers/aggregators auto-index us
+            base = (os.environ.get("PUBLIC_BASE_URL") or "").rstrip("/")
+            if not base:
+                try: base = open(os.path.join(HERE,"public_url.txt")).read().strip().rstrip("/")
+                except Exception:
+                    host = self.headers.get("Host") or f"127.0.0.1:{PORT}"
+                    base = f"http://{host}"
+            def _res(path, desc, in_q, out_ex, price):
+                return {
+                  "resource": f"{base}{path}",
+                  "type": "http",
+                  "x402Version": 1,
+                  "accepts": [{
+                     "scheme":"exact",
+                     "network":NETWORK,
+                     "asset":"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                     "currency":"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                     "payTo":PAY_TO,"recipient":PAY_TO,
+                     "maxAmountRequired":str(int(round(float(price)*1_000_000))),
+                     "amount":str(int(round(float(price)*1_000_000))),
+                     "maxTimeoutSeconds":3600,
+                     "extra":{"name":"USD Coin","version":"2"}
+                  }],
+                  "description": desc,
+                  "extensions":{"bazaar":{"info":{
+                     "input":{"type":"http","method":"GET","queryParams":in_q},
+                     "output":{"example":out_ex}}}},
+                }
+            resources = [
+              _res("/intel","Money-flow + trend + volatility intelligence for 10 FX/metal "
+                          "symbols. Actionable signal: regime, MFI/CMF flow score, ATR stop, "
+                          "direction bias. One call per symbol.",
+                   {"symbol":"EURUSD","tf":"1h"},
+                   {"symbol":"EURUSD","trend":"UP","flow_score":42,"regime":"ACCUMULATION"},
+                   PRICE_USDC),
+              _res("/signal","Risk-governed trade plans for all symbols: <=1% risk, mandatory "
+                          "stop-loss, position size, R:R. Stands aside when no edge.",
+                   {"equity_usd":"10000"},
+                   {"valid":3,"rules":"1% risk, mandatory stop, no martingale"},
+                   PRICE_USDC),
+            ]
+            manifest = {"x402Version":1,"items":resources,
+                        "pagination":{"limit":len(resources),"offset":0,"total":len(resources)}}
+            return self._send(json.dumps(manifest,indent=2))
+
         if u.path=="/product":
             f=os.path.join(HERE,"product.json")
             return self._send(open(f).read() if os.path.exists(f) else "{}")
