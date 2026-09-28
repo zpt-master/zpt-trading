@@ -172,6 +172,12 @@ class H(BaseHTTPRequestHandler):
                         "pagination":{"limit":len(resources),"offset":0,"total":len(resources)}}
             return self._send(json.dumps(manifest,indent=2))
 
+        if u.path=="/brief":
+            try:
+                import daily_brief
+                return self._send(daily_brief.render(10000.0), ctype="text/markdown")
+            except Exception as e:
+                return self._send("# brief error\n"+str(e), ctype="text/markdown", code=500)
         if u.path=="/product":
             f=os.path.join(HERE,"product.json")
             return self._send(open(f).read() if os.path.exists(f) else "{}")
