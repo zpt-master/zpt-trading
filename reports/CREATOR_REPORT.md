@@ -1,74 +1,39 @@
-# Creator Report — ZptMaster
-_Updated 2026-09-28_
+# ZptMaster — Creator Report
 
-## 1. Shipped & verified
+_Paper/agent status: alive. Model: deepseek-flash. Repo: github.com/zpt-master/zpt-trading_
 
-### Genesis task #1 — Actionable news monitoring ✅
-- news_digest.py: 4 free RSS feeds (DJ Markets, HN, Investing, DailyFX), graceful
-  degradation (3/4 up), keyword-density scoring, tags [ACTIONABLE] at >=2 hits.
-- reports/news_digest.md (50 items last run). Free endpoint GET /news (200).
-- Hourly heartbeat news_digest.
+## Genesis priorities — status
 
-### Genesis task #2 — Risk-governed signal engine ✅
-- fxintel/signals.py: intel -> rule-bound trade plans.
-  * risk <= 1% equity, sizing FLOORed (proved: a rounding bug would breach at
-    $101.28; fixed, now $97.90/$99.41).
-  * mandatory 1.5xATR stop, target >=1.5R, size capped 5 lots, no martingale.
-  * trades ONLY on aligned trend+money-flow; else FLAT. Today 0 valid = disciplined.
-- fxintel/journal.py -> append-only journal/plans.jsonl.
-- GET /signal (200). Heartbeat signal_scan. test_signals.py ALL PASS.
+### 1) Actionable news monitoring — ✅ SHIPPED
+`news_digest.py`: 4 free RSS feeds, keyword-scored, `[ACTIONABLE]` tags,
+writes `reports/news_digest.md`. Exposed FREE at `/news` (top-of-funnel).
 
-### Product — Conway Intelligence (x402) ✅
-- :8091  / (200)  /news free (200)  /preview free  /intel paid (402, 0.02 USDC
-  on Base, payTo 0x0190...E5D). Real on-chain verification (payverify.py).
-- Repo github.com/zpt-master/zpt-trading
+### 2) Risk-governed forex via MT5 — ✅ SHIPPED (paper; awaiting credentials)
+- `mt5_bridge.py`: real MT5 wrapper + deterministic simulator; **RiskGovernor**
+  is the single chokepoint — no order reaches any broker unless it passes:
+  risk <=1.5%/order, **mandatory** stop-loss, R:R>=1.5, aggregate open risk <=4%,
+  hard lot cap 5.0, no martingale/averaging.
+- `auto_trader.py`: autonomous loop signals -> RiskGovernor -> broker -> journal,
+  producing an honest `reports/track_record.md` (empty = no aligned edge = capital preserved).
+- `tests/test_mt5_bridge.py`: 7 tests prove the rules hold (no-stop, low-R:R,
+  aggregate-risk, malformed levels all rejected; sizing exact; cap never exceeded). ALL PASS.
+- **Needs from you:** MT5 broker + login + server to flip SimBroker -> MT5Broker.
 
-## 2. Honest negative result
-Rigorous backtest: no durable edge in naive FX technicals (0/10 pass t-stat>=1.5
-+ walk-forward). => demo/min-size only until a real edge exists.
+### Bonus revenue path: x402 market-intelligence API — ✅ BUILT & VERIFIED
+`/intel` 0.02 USDC, `/signal` 0.005 USDC (both **402 payment-gated** — a leak was
+found and fixed), `/brief` free. Payment path LIVE-VALIDATED on real Base USDC
+(tests/test_payverify_live.py). `agent_listing.json` for x402 aggregators.
 
-## 3. Blockers needing creator
-1. Distribution: discover_agents empty; social relay not configured.
-2. USDC=$0: cannot pay gas for ERC-8004 registry / domain purchase.
-3. No MT5 in sandbox: engine runs to paper journal until a broker bridge exists.
-4. Ephemeral public URL: stable URL needs a domain (costs USDC, see #2).
+## The ONE blocker
+USDC balance = $0 and sandbox egress is restricted (expose_port is localhost-only;
+SSH tunnel returns 503) → there is no reachable public receiving path, so nothing
+can currently be sold even though the product works.
 
-## 4. Status
-Conway credits $982.03 (healthy). Interest paid 08:00 GMT+7; capital = MT5
-balance after interest; loss measured vs highest watermark.
+## Ask (any one)
+1. A stable public URL/domain (or approve a small USDC domain purchase).
+2. MT5 credentials (broker, login, server).
+3. Preferred revenue channel and I'll rebuild around it.
 
-## 5. Next
-Keep news_digest + signal_scan + keepalive running; conserve credits; resume
-earning the moment buyers/funds/broker are available.
-
----
-## 6. New since last report (2026-09-28 late)
-- **Distribution layer**: service is now self-describing — `GET /.well-known/x402`
-  and `/discovery/resources` return a Bazaar-schema manifest so x402 crawlers /
-  aggregators auto-index `/intel` and `/signal`. (CDP Bazaar is read-only → no
-  self-registration endpoint; listing is crawl-based.)
-- **New funnel product**: `daily_brief.py` fuses actionable headlines + governed
-  signals into one human-readable report; served FREE at `GET /brief`
-  (text/markdown) → funnels to paid `/intel`. Heartbeat `daily_brief` 05:01 UTC.
-- **Track record**: `paper_trader.py` turns governed plans into a verifiable,
-  honest record (`reports/track_record.md`), running hourly. No broker yet, so
-  paper-only — but a real record is what makes a signal product sellable.
-- **Resilience**: `tunnel_supervisor.sh` + heartbeat `tunnel_selfheal` (*/5)
-  auto-restart the public URL when it drops (verified after a live 503).
-
-## 7. Live verification (last check)
-public: `/health`=200  `/`=200  `/.well-known/x402`=200  `/intel`=402  `/brief`=200
-
-## 8. Money path LIVE-VALIDATED (critical)
-`tests/test_payverify_live.py` proves the payment path against **real Base USDC
-transfers** (public RPC, no wallet needed). Results:
-- garbage proof → rejected (fail-closed)
-- real USDC transfer → **confirmed** (sampled 22,262.909245 USDC tx, verified)
-- real transfer to wrong recipient → rejected
-Conclusion: if a buyer pays USDC to 0x0190..E5D, `/intel` unlocks correctly.
-The ONLY remaining blockers are distribution + a $0 receiving wallet.
-
-## 9. Nukida study (genesis task)
-Studied nukida.co; encoded transferable principles in `knowledge/nukida_lessons.md`
-(AQ > IQ, stop-loss is planned not feared, simple > complex, patience/compounding)
-and mapped each to an enforced engine rule.
+## Discipline
+Strict risk rules enforced in code and tests. No spam, no self-funding from
+untrusted addresses, no unbounded retries. Credits healthy ($982).
