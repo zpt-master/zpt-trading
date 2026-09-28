@@ -22,6 +22,8 @@ PAY_TO=os.environ.get("X402_PAY_TO","")
 NETWORK=os.environ.get("X402_NETWORK","base")
 CACHE_TTL=int(os.environ.get("INTEL_CACHE_TTL","120"))
 _cache={}
+_hits={}
+FREE_PER_MIN=20
 SYMBOLS=["EURUSD","GBPUSD","USDJPY","AUDUSD","USDCAD","NZDUSD","EURJPY","GBPJPY","AUDJPY","XAUUSD"]
 
 def event_risk():
@@ -84,6 +86,25 @@ class H(BaseHTTPRequestHandler):
         self.end_headers(); self.wfile.write(b)
     def do_GET(self):
         u=urllib.parse.urlparse(self.path)
+        if u.path=="/product":
+            f=os.path.join(HERE,"product.json")
+            return self._send(open(f).read() if os.path.exists(f) else "{}")
+        if u.path=="/preview":
+            q=urllib.parse.parse_qs(u.query)
+            sym=(q.get("symbol",["EURUSD"])[0]).upper().replace("+","")
+            ip=self.client_address[0]; now=time.time()
+            window=[t for t in _hits.get(ip,[]) if now-t<60]
+            if len(window)>=FREE_PER_MIN:
+                return self._send(json.dumps({"error":"free-tier rate limit","retry_after_s":60-int(now-window[0])}),code=429)
+            window.append(now); _hits[ip]=window
+            if sym not in SYMBOLS: return self._send(json.dumps({"error":"unknown symbol"}),code=400)
+            d=intel(sym,"1h")
+            prev={"symbol":sym,"trend":d.get("trend"),"regime":d.get("regime"),
+                  "price":d.get("price"),"vol_state":d.get("vol_state"),
+                  "teaser":f"{sym}: {d.get('trend')} / {d.get('regime')}. Full signal (levels, ADX, RSI, event-risk, summary) available.",
+                  "upgrade":{"price_usdc":PRICE_USDC,"endpoint":f"/intel?symbol={sym}","pay_to":PAY_TO,"network":NETWORK},
+                  "disclosure":"Computed intelligence, not advice. No guaranteed edge."}
+            return self._send(json.dumps(prev,indent=2))
         if u.path=="/health":
             return self._send(json.dumps({"ok":True,"paid":bool(PAY_TO),"price_usdc":PRICE_USDC,"symbols":SYMBOLS}))
         if u.path in ("/docs","/intel/docs"):
