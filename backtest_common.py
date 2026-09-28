@@ -22,6 +22,15 @@ def simulate(cs, entries, rr, stop_mult, i0, max_bars=200):
         i=j if done else i+1
     return R
 
+def tstat(R):
+    """Signal-to-noise of expectancy. >2 is meaningful, <1 is noise."""
+    n=len(R)
+    if n<2: return 0.0
+    m=sum(R)/n
+    var=sum((x-m)**2 for x in R)/(n-1)
+    sd=var**0.5
+    return (m/(sd/n**0.5)) if sd>0 else 0.0
+
 def stats(R):
     if len(R)<10: return None
     eq=1.0;peak=1.0;mdd=0.0

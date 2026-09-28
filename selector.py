@@ -18,8 +18,10 @@ STATE=os.path.join(HERE,"selector_state.json")
 JOURNAL=os.path.join(HERE,"logs","trades.jsonl")
 
 RECENT_BARS=1500        # evaluate only the recent window
-MIN_TRADES=15           # need this many OOS trades to trust a family
-FLOOR_AVGR=0.08         # must beat this expectancy
+MIN_TRADES=25           # need this many OOS trades to trust a family
+MIN_TSTAT=1.5           # expectancy must be statistically meaningful, not noise
+FLOOR_AVGR=0.10         # must beat this expectancy
+CONSISTENT=True         # must ALSO be positive in the prior window (walk-forward)
 LIVE_MIN_N=10           # live sample before we judge
 LIVE_DISABLE_AVGR=-0.05 # disable if live expectancy sinks below this
 
@@ -28,17 +30,25 @@ def recent_eval(sym, itv="1h"):
     if not os.path.exists(p): return None
     cs=json.load(open(p))[-RECENT_BARS:]
     if len(cs)<400: return None
+    mid=len(cs)//2
+    recent, prior = cs[mid:], cs[:mid]
     best=None
     for name,ent in bc.FAMILIES.items():
         for rr,sm in itertools.product([1.0,1.5,2.0],[1.5,2.0]):
-            R=bc.simulate(cs,ent,rr,sm,260)
+            R=bc.simulate(recent,ent,rr,sm,60)
             st=bc.stats(R)
             if not st or st["n"]<MIN_TRADES: continue
             if st["avgR"]<FLOOR_AVGR: continue
-            score=st["avgR"] - 0.01*abs(st["dd"])   # risk-adjusted preference
+            if bc.tstat(R)<MIN_TSTAT: continue          # reject noise
+            if CONSISTENT:
+                Rp=bc.simulate(prior,ent,rr,sm,60)
+                stp=bc.stats(Rp)
+                if not stp or stp["avgR"]<=0: continue  # must agree on prior window
+            score=st["avgR"] - 0.01*abs(st["dd"])
             if best is None or score>best["score"]:
-                best={"family":name,"rr":rr,"sm":sm,"avgR":st["avgR"],
-                      "wr":st["wr"],"n":st["n"],"dd":st["dd"],"score":round(score,3)}
+                best={"family":name,"rr":rr,"sm":sm,"avgR":st["avgR"],"wr":st["wr"],
+                      "n":st["n"],"dd":st["dd"],"tstat":round(bc.tstat(R),2),
+                      "score":round(score,3)}
     return best
 
 def live_stats():
@@ -69,7 +79,7 @@ def build():
         avgR=(sum(lr)/len(lr)) if lr else None
         dis = (avgR is not None and len(lr)>=LIVE_MIN_N and avgR<LIVE_DISABLE_AVGR)
         state["symbols"][s]={"enabled": not dis,"family":ev["family"],"rr":ev["rr"],"sm":ev["sm"],
-            "recent_avgR":ev["avgR"],"recent_wr":ev["wr"],"recent_n":ev["n"],
+            "recent_avgR":ev["avgR"],"recent_wr":ev["wr"],"recent_n":ev["n"],"tstat":ev.get("tstat"),
             "live_n":len(lr),"live_avgR":(round(avgR,3) if avgR is not None else None),
             "reason": "live circuit-breaker tripped" if dis else "recent positive expectancy"}
     json.dump(state,open(STATE,"w"),indent=2)

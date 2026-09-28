@@ -1,125 +1,45 @@
 {
-  "ts": "2026-09-28T16:42:19.984850+00:00",
+  "ts": "2026-09-28T16:44:24.913561+00:00",
   "symbols": {
     "AUDJPY": {
-      "enabled": true,
-      "family": "don_100",
-      "rr": 2.0,
-      "sm": 2.0,
-      "recent_avgR": 0.8,
-      "recent_wr": 0.6,
-      "recent_n": 15,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "AUDUSD": {
-      "enabled": true,
-      "family": "ema_9_21",
-      "rr": 1.0,
-      "sm": 1.5,
-      "recent_avgR": 0.438,
-      "recent_wr": 0.719,
-      "recent_n": 32,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "EURJPY": {
-      "enabled": true,
-      "family": "don_55",
-      "rr": 2.0,
-      "sm": 2.0,
-      "recent_avgR": 0.6,
-      "recent_wr": 0.533,
-      "recent_n": 15,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "EURUSD": {
-      "enabled": true,
-      "family": "don_100",
-      "rr": 1.5,
-      "sm": 2.0,
-      "recent_avgR": 0.25,
-      "recent_wr": 0.5,
-      "recent_n": 18,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "GBPJPY": {
-      "enabled": true,
-      "family": "ema_9_21",
-      "rr": 2.0,
-      "sm": 1.5,
-      "recent_avgR": 0.35,
-      "recent_wr": 0.45,
-      "recent_n": 20,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "GBPUSD": {
-      "enabled": true,
-      "family": "don_55",
-      "rr": 2.0,
-      "sm": 2.0,
-      "recent_avgR": 0.688,
-      "recent_wr": 0.562,
-      "recent_n": 16,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "NZDUSD": {
-      "enabled": true,
-      "family": "ema_21_55",
-      "rr": 1.0,
-      "sm": 1.5,
-      "recent_avgR": 0.25,
-      "recent_wr": 0.625,
-      "recent_n": 16,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "USDCAD": {
-      "enabled": true,
-      "family": "don_55",
-      "rr": 1.5,
-      "sm": 2.0,
-      "recent_avgR": 0.618,
-      "recent_wr": 0.647,
-      "recent_n": 17,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "USDJPY": {
-      "enabled": true,
-      "family": "don_20",
-      "rr": 2.0,
-      "sm": 2.0,
-      "recent_avgR": 0.5,
-      "recent_wr": 0.5,
-      "recent_n": 24,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     },
     "XAUUSD": {
-      "enabled": true,
-      "family": "ema_9_21",
-      "rr": 1.5,
-      "sm": 2.0,
-      "recent_avgR": 0.447,
-      "recent_wr": 0.579,
-      "recent_n": 19,
-      "live_n": 0,
-      "live_avgR": null,
-      "reason": "recent positive expectancy"
+      "enabled": false,
+      "reason": "no positive-expectancy family in recent window"
     }
   }
 }
