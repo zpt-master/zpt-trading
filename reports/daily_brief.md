@@ -1,4 +1,4 @@
-# Daily Market Brief — 2026-09-28 20:18 UTC
+# Daily Market Brief — 2026-09-28 20:21 UTC
 
 _Risk-governed. Honest. No trade is better than a bad trade._
 
@@ -8,7 +8,6 @@ _Risk-governed. Honest. No trade is better than a bad trade._
 - **[ACTIONABLE]** Trump Adds Fuel to Claims That Big Banks Discriminate Against Conservatives
 - **[ACTIONABLE]** Nvidia wants to put a watchdog chip next to every AI agent
 - **[ACTIONABLE]** Nvidia sets biggest-ever buyback plan as AI chip competition weighs on stock performance
-- **[ACTIONABLE]** = 2+ market/finance keywords. Curated for decision value, not completeness.
 
 ## 2. Governed trade plans  (equity $10,000, risk ≤ 1%/trade)
 

@@ -20,6 +20,7 @@ from indicators import ema, rsi, atr, adx
 
 PORT=int(os.environ.get("INTEL_PORT","8091"))
 PRICE_USDC=os.environ.get("INTEL_PRICE_USDC","0.02")
+SIGNAL_PRICE_USDC=float(os.environ.get("SIGNAL_PRICE_USDC","0.005"))
 PAY_TO=os.environ.get("X402_PAY_TO","")
 NETWORK=os.environ.get("X402_NETWORK","base")
 CACHE_TTL=int(os.environ.get("INTEL_CACHE_TTL","120"))
@@ -107,6 +108,12 @@ class H(BaseHTTPRequestHandler):
             except Exception as e:
                 self.send_response(500); self.end_headers(); self.wfile.write(str(e).encode()); return
         if u.path=="/signal":
+            if PAY_TO and not self._has_payment(price=SIGNAL_PRICE_USDC):
+                return self._send(json.dumps({"error":"payment required","x402Version":1,
+                    "accepts":[{"scheme":"exact","network":NETWORK,"asset":"USDC","payTo":PAY_TO,
+                                "maxAmountRequired":SIGNAL_PRICE_USDC,"resource":self.path,
+                                "description":"Risk-governed trade plans (<=1% risk, mandatory stop)"}]}),
+                    code=402,extra={"WWW-Authenticate":"x402"})
             try:
                 import time as _t, os as _os, json as _j
                 cache="journal/signals_cache.json"
@@ -220,14 +227,14 @@ class H(BaseHTTPRequestHandler):
             return self._send(json.dumps({"error":f"unknown symbol; use one of {SYMBOLS}"}),code=400)
         try: return self._send(json.dumps(intel(sym,tf),indent=2))
         except Exception as e: return self._send(json.dumps({"error":str(e)}),code=500)
-    def _has_payment(self):
+    def _has_payment(self,price=None):
         proof=None
         for h in ("X-PAYMENT","X-Payment","Authorization"):
             v=self.headers.get(h)
             if v: proof=v; break
         if not proof: return False
         try:
-            ok,det=payverify.verify_payment(proof,PAY_TO,PRICE_USDC)
+            ok,det=payverify.verify_payment(proof,PAY_TO,price if price is not None else PRICE_USDC)
         except Exception as e:
             ok,det=False,{"reason":"verifier error: %s"%e}
         try:
