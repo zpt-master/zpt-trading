@@ -41,3 +41,11 @@ ends ABOVE the previous high-water mark.
 ### Next
 - Let the loop collect data; review fills over coming cycles.
 - Only consider increasing size after a positive expectancy is demonstrated.
+
+## Session (2026-09-28) — honest edge verdict + sellable intel service
+- Built main.py (watchdog), news_refresh.py (RSS + calendar), stats.py, ops.py (ops snapshot + Markdown ticker), intel_service.py (x402-gated computed intelligence).
+- Ran rigorous optimization: 11 strategy families × params × 10 symbols, walk-forward.
+- **Verdict: no statistically durable edge (0/10 symbols pass t-stat≥1.5 + consistency).** Trading stays DEMO / min size. No profit claimed.
+- Shipped **Conway Intelligence API**: sells computed regime/vol/level/event-risk signal, 0.02 USDC/call via x402 (open until X402_PAY_TO set).
+- Services + watchdog + @reboot cron live: trade, news, report, dashboard(:8088), intel(:8091).
+- All committed to github (8+ commits).
