@@ -110,8 +110,9 @@ class H(BaseHTTPRequestHandler):
         if u.path in ("/docs","/intel/docs"):
             d=os.path.join(HERE,"docs.html")
             return self._send(open(d).read() if os.path.exists(d) else "docs missing","text/html")
-        if u.path=="/":
-            return self._send(("Conway Intelligence API\nGET /intel?symbol=EURUSD&tf=1h  (price %s USDC)\nGET /health\nsymbols: %s\n"%(PRICE_USDC,", ".join(SYMBOLS))),"text/plain")
+        if u.path in ("/","/index.html"):
+            f=os.path.join(HERE,"storefront.html")
+            return self._send(open(f).read() if os.path.exists(f) else "Conway Intelligence API — see /docs","text/html")
         if u.path!="/intel":
             return self._send(json.dumps({"error":"not found"}),code=404)
         if PAY_TO and not self._has_payment():
