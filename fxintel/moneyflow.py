@@ -19,6 +19,19 @@ def _v(b):
             if x is not None: return float(x)
         except Exception: pass
     return 0.0
+def _activity(bars):
+    """Return (vol_series, source). Uses real volume if present in EVERY bar;
+    otherwise a transparent activity PROXY = high-low range * close
+    (larger ranges on higher prices = more activity). Documented, not hidden."""
+    real=[_v(b) for b in bars]
+    if any(x>0 for x in real):
+        return real,"volume"
+    prox=[]
+    for b in bars:
+        h,l,c=_g(b,"h"),_g(b,"l"),_g(b,"c")
+        prox.append(max(0.0,(h-l))*max(c,1e-9))
+    return prox,"range_proxy"
+
 def _g(b,k):
     try:
         return float(b[k]) if isinstance(b,dict) else float(getattr(b,k))
@@ -27,11 +40,12 @@ def _g(b,k):
 
 def money_flow_index(bars, n=14):
     if len(bars) < n+1: return None
+    act,_=_activity(bars)
     pos=neg=0.0
     for i in range(1, n+1):
         tp_now=(_g(bars[-i],"h")+_g(bars[-i],"l")+_g(bars[-i],"c"))/3
         tp_prev=(_g(bars[-i-1],"h")+_g(bars[-i-1],"l")+_g(bars[-i-1],"c"))/3
-        flow=tp_now*_v(bars[-i])
+        flow=tp_now*act[-i]
         if tp_now>tp_prev: pos+=flow
         elif tp_now<tp_prev: neg+=flow
     if neg==0: return 100.0 if pos>0 else 50.0
@@ -40,9 +54,10 @@ def money_flow_index(bars, n=14):
 
 def chaikin_money_flow(bars, n=20):
     if len(bars) < n: return None
+    act,_=_activity(bars)
     mfv=vol=0.0
-    for b in bars[-n:]:
-        h,l,c,v=_g(b,"h"),_g(b,"l"),_g(b,"c"),_v(b)
+    for b,a in zip(bars[-n:],act[-n:]):
+        h,l,c,v=_g(b,"h"),_g(b,"l"),_g(b,"c"),a
         rng=h-l
         mfm=0.0 if rng==0 else ((c-l)-(h-c))/rng
         mfv+=mfm*v; vol+=v
@@ -50,9 +65,10 @@ def chaikin_money_flow(bars, n=20):
 
 def relative_volume(bars, n=20):
     if len(bars) < n+1: return None
-    avg=sum(_v(b) for b in bars[-(n+1):-1])/n
+    act,_=_activity(bars)
+    avg=sum(act[-(n+1):-1])/n
     if avg<=0: return None
-    return _v(bars[-1])/avg
+    return act[-1]/avg
 
 def flow_regime(mfi, cmf, rvol):
     if mfi is None or cmf is None:
@@ -72,7 +88,16 @@ def flow_score(mfi, cmf, rvol):
         s += max(-20,min(20,(rvol-1)*20))  # conviction bonus
     return int(max(-100,min(100,s)))
 
+def _clean(bars):
+    """Drop a trailing degenerate bar (h==l, e.g. a just-opened live candle)."""
+    if len(bars)>=2:
+        b=bars[-1]; h,l=_g(b,"h"),_g(b,"l")
+        if h==l: return bars[:-1]
+    return bars
+
 def analyze(bars):
+    bars=_clean(bars)
+    _,vsrc=_activity(bars)
     mfi=money_flow_index(bars); cmf=chaikin_money_flow(bars); rv=relative_volume(bars)
     reg=flow_regime(mfi,cmf,rv); sc=flow_score(mfi,cmf,rv)
     return {
@@ -81,6 +106,7 @@ def analyze(bars):
         "rvol": None if rv is None else round(rv,2),
         "flow_regime": reg,
         "flow_score": sc,
+        "volume_source": vsrc,
         "read": _read(reg,sc),
     }
 
