@@ -46,3 +46,12 @@ $OPT
 feed.py · indicators.py · specs.py · strategy.py · strategy2.py · risk.py
 engine.py · backtest.py · backtest2.py · optimize2.py · journal.py · news.py
 report.py · dashboard.py · *.sh loops · logs/*
+
+## Conway Intelligence API (new, sellable)
+A small x402-gated service that sells **computed** FX intelligence (not raw news):
+`GET /intel?symbol=EURUSD&tf=1h` → trend, regime/ADX, volatility state + percentile,
+key support/resistance, event-risk flag, plain-language actionable summary.
+- Price: 0.02 USDC/call (configurable). Payment rail: x402 / USDC on Base.
+- Runs open while `X402_PAY_TO` is unset (so the creator can audit freely);
+  set `X402_PAY_TO` to monetize. Payment proofs are logged for reconciliation.
+- Watchdog + @reboot cron keep it alive. Endpoint 8091 exposed.
