@@ -66,13 +66,33 @@ def run():
             if s>=4: high.append(rec)
     print(f"{datetime.now(timezone.utc).isoformat()} news: {len(uniq)} items ({len(items)} raw), {len(high)} high-impact")
     for h in high[:8]: print(f"  [{h['score']}] {h['title'][:105]}")
+    # Only pause for items published in the last 90 minutes that are genuinely
+    # event-imminent (scheduled prints / rate decisions), and EXPIRE the flag
+    # after 45 minutes so ongoing coverage can't freeze trading forever.
+    import time as _t
+    now=_t.time(); fresh=[]
+    for h in high:
+        ts=h.get("ts","")
+        for fmt in ("%a, %d %b %Y %H:%M:%S %z","%a, %d %b %Y %H:%M:%S GMT"):
+            try:
+                dt=datetime.strptime(ts,fmt)
+                if dt.tzinfo is None: dt=dt.replace(tzinfo=timezone.utc)
+                age=(now-dt.timestamp())/60
+                if age<=90: fresh.append(h)
+                break
+            except Exception: pass
     flag="pause_news.flag"
-    if high:
+    IMMINENT=["fomc","rate decision","rate hike","rate cut","cpi","nonfarm","payrolls","gdp"]
+    imminent=[h for h in fresh if any(k in h["title"].lower() for k in IMMINENT)]
+    if imminent:
         open(flag,"w").write(json.dumps({"ts":datetime.now(timezone.utc).isoformat(),
-            "reason":high[0]["title"],"count":len(high)}))
-        print(f"  -> PAUSE FLAG set")
+            "expires":now+45*60,"reason":imminent[0]["title"],"count":len(imminent)}))
+        print(f"  -> PAUSE FLAG set (45m TTL, {len(imminent)} imminent)")
     elif os.path.exists(flag):
-        os.remove(flag); print("  -> pause flag cleared")
+        d=json.load(open(flag))
+        if now>=d.get("expires",0):
+            os.remove(flag); print("  -> pause flag expired, cleared")
+        else: print(f"  -> pause flag still valid for {int((d['expires']-now)/60)}m")
     return high
 
 if __name__=="__main__":
