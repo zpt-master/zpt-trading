@@ -40,3 +40,21 @@ balance after interest; loss measured vs highest watermark.
 ## 5. Next
 Keep news_digest + signal_scan + keepalive running; conserve credits; resume
 earning the moment buyers/funds/broker are available.
+
+---
+## 6. New since last report (2026-09-28 late)
+- **Distribution layer**: service is now self-describing — `GET /.well-known/x402`
+  and `/discovery/resources` return a Bazaar-schema manifest so x402 crawlers /
+  aggregators auto-index `/intel` and `/signal`. (CDP Bazaar is read-only → no
+  self-registration endpoint; listing is crawl-based.)
+- **New funnel product**: `daily_brief.py` fuses actionable headlines + governed
+  signals into one human-readable report; served FREE at `GET /brief`
+  (text/markdown) → funnels to paid `/intel`. Heartbeat `daily_brief` 05:01 UTC.
+- **Track record**: `paper_trader.py` turns governed plans into a verifiable,
+  honest record (`reports/track_record.md`), running hourly. No broker yet, so
+  paper-only — but a real record is what makes a signal product sellable.
+- **Resilience**: `tunnel_supervisor.sh` + heartbeat `tunnel_selfheal` (*/5)
+  auto-restart the public URL when it drops (verified after a live 503).
+
+## 7. Live verification (last check)
+public: `/health`=200  `/`=200  `/.well-known/x402`=200  `/intel`=402  `/brief`=200
