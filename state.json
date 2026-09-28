@@ -6,5 +6,6 @@
   "trades_today": 0,
   "consecutive_losses": 0,
   "halted": false,
-  "halt_reason": ""
+  "halt_reason": "",
+  "last_order_id": null
 }
