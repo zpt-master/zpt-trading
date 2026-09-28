@@ -7,6 +7,12 @@ import json, os, sys, time, urllib.parse
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from datetime import datetime, timezone
 HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
+# config.json is the source of truth (so watchdogs work without env vars)
+try:
+    _cfg=json.load(open(os.path.join(HERE,"config.json")))
+    os.environ.setdefault("X402_PAY_TO", _cfg["x402"]["pay_to"] if _cfg["x402"].get("enabled") else "")
+    os.environ.setdefault("INTEL_PRICE_USDC", str(_cfg["x402"]["intel_price_usdc"]))
+except Exception: pass
 import feed
 from indicators import ema, rsi, atr, adx
 

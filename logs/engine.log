@@ -18,3 +18,9 @@
 2026-09-28T16:34:16.952772+00:00 --- cycle end
 2026-09-28T16:41:08.382168+00:00 --- cycle mode=DEMO eq=100425.41 open=0 live=False
 2026-09-28T16:41:08.382512+00:00 news gate: event risk -> no new entries (Australian Dollar Outlook: AUD/USD Holds 70c Ahead of RBA and CPI - FO)
+2026-09-28T16:49:17.008170+00:00 --- cycle mode=DEMO eq=100425.41 open=0 live=True
+2026-09-28T16:49:20.855964+00:00 --- cycle end
+2026-09-28T17:04:20.912247+00:00 --- cycle mode=DEMO eq=100425.41 open=0 live=True
+2026-09-28T17:04:22.571277+00:00 --- cycle end
+2026-09-28T17:19:22.636924+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-28T17:34:22.757672+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
