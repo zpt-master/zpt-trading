@@ -1,0 +1,9 @@
+# x402 gate verification  Mon Sep 28 17:56:23 UTC 2026
+--- /health ---
+
+--- /intel unpaid (expect 402) ---
+http=000
+402 body:
+
+--- /preview free (expect 200) ---
+http=000
