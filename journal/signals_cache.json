@@ -8,7 +8,7 @@
   {
    "symbol": "EURUSD",
    "side": "FLAT",
-   "entry": 1.13701,
+   "entry": 1.13727,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -22,7 +22,7 @@
   {
    "symbol": "GBPUSD",
    "side": "FLAT",
-   "entry": 1.32563,
+   "entry": 1.32524,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -36,7 +36,7 @@
   {
    "symbol": "USDJPY",
    "side": "FLAT",
-   "entry": 157.431,
+   "entry": 157.40199,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -50,7 +50,7 @@
   {
    "symbol": "AUDUSD",
    "side": "FLAT",
-   "entry": 0.70215,
+   "entry": 0.7019,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -64,7 +64,7 @@
   {
    "symbol": "USDCAD",
    "side": "FLAT",
-   "entry": 1.41723,
+   "entry": 1.41766,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -78,7 +78,7 @@
   {
    "symbol": "NZDUSD",
    "side": "FLAT",
-   "entry": 0.56693,
+   "entry": 0.5667,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -92,7 +92,7 @@
   {
    "symbol": "EURJPY",
    "side": "FLAT",
-   "entry": 178.957,
+   "entry": 178.964,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -106,7 +106,7 @@
   {
    "symbol": "GBPJPY",
    "side": "FLAT",
-   "entry": 208.687,
+   "entry": 208.573,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -120,7 +120,7 @@
   {
    "symbol": "AUDJPY",
    "side": "FLAT",
-   "entry": 110.501,
+   "entry": 110.427,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,
@@ -134,7 +134,7 @@
   {
    "symbol": "XAUUSD",
    "side": "FLAT",
-   "entry": 4166.7998,
+   "entry": 4150.6001,
    "stop": 0,
    "target": 0,
    "risk_pct": 1.0,

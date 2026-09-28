@@ -1,5 +1,5 @@
 # Actionable News Digest
-_Generated 2026-09-28 18:08 UTC_
+_Generated 2026-09-28 20:18 UTC_
 
 Sources reachable: 3/4 · items seen: 50
 
@@ -14,24 +14,24 @@ Sources reachable: 3/4 · items seen: 50
 - The Extra Reward for Owning Stocks Over Bonds Has Disappeared
 
 ## Tech (ok)
-- **[ACTIONABLE]** Parley: Federated, decentralised chat that speaks plain IRC
+- **[ACTIONABLE]** Nvidia wants to put a watchdog chip next to every AI agent
 - I made a visual workspace for AI Automations
 - OpenAI still doesn't seem to have a handle on all of its rogue AI activity
-- How Pew Research Center is – and is not – using AI in our work
-- Driver Ticketed for No Insurance Just Because Flock (YC 2017) Said She Didn't
-- The problem is not AI code, but not knowing about system architecture or intent
 - Pirating the Pirates
-- What Would a Serious AI Product Look Like?
+- California expanded the right to delete today
+- First Steps of the PLC Organization – Independent Public Ledger of Credentials
+- MicroLLM Lab – Try 7 tiny LLM's in the browser
+- GrapheneOS – When an app is slow
 
 ## Finance (ok)
 - **[ACTIONABLE]** Nvidia sets biggest-ever buyback plan as AI chip competition weighs on stock performance
-- Airbus faces dip in September deliveries after quality snag, sources say
-- US Supreme Court’s Alito won’t participate in climate case involving oil companies
-- Chipotle options show 10-to-1 call-to-put ratio as stock rises 4%
-- Glaukos options activity points to bullish call spread targeting $180
-- Why is Tesla stock sliding 3.5% today?
-- JOLTs job openings and consumer confidence among data due Tuesday
-- Germany’s Evonik rejects BASF’s $11.7 billion bid, sources say
+- Pope Leo says concerns about AI doom are not ’fake news’
+- Manus launches AI agent platform as startup expands tools
+- Blockchain.com eyes $500M IPO at up to $6B valuation, Bloomberg reports
+- Cleveland-Cliffs slides as report shows Stelco idling plant over US tariffs
+- U.S. stocks slip as OpenAI training halt weighs on AI trade, bonds extend rout
+- Why is Acuity Brands stock sliding today?
+- US FAA delays Boeing 737 MAX 10 certification, shares dive 6%
 
 ## FX (UNREACHABLE)
 - _no items / feed unreachable_
