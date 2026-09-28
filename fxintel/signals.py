@@ -90,7 +90,10 @@ def build_plan(symbol, bars, d, equity_usd=10000.0, risk_pct=1.0,
     pips=per_unit_price/_pip(sym)
     pip_val_per_lot=100.0 if sym=="XAUUSD" else 10.0
     loss_per_lot=pips*pip_val_per_lot
-    size=round(risk_usd/loss_per_lot, 2) if loss_per_lot>0 else 0
+    import math
+    # FLOOR (never round up): rounding up would breach the 1% risk cap.
+    raw=risk_usd/loss_per_lot if loss_per_lot>0 else 0
+    size=math.floor(raw*100)/100.0
     # ---- Rule: hard cap, never over-size (no leverage abuse) ----
     size=min(size, 5.0)
     rr=round(abs(target-entry)/per_unit_price,2) if per_unit_price else 0
@@ -101,10 +104,14 @@ def build_plan(symbol, bars, d, equity_usd=10000.0, risk_pct=1.0,
     if vol: reason.append(f"vol={vol}")
     reason.append(f"ATR={atr:.5g} stop={stop_atr}xATR RR={rr}")
 
-    valid = size>0 and rr>=min_rr and risk_pct<=2.0
+    realized=size*loss_per_lot
+    if realized>risk_usd and loss_per_lot>0:   # hard guarantee: never exceed risk budget
+        size=math.floor((risk_usd/loss_per_lot)*100)/100.0
+        realized=size*loss_per_lot
+    valid = size>0 and rr>=min_rr and risk_pct<=2.0 and realized<=risk_usd+0.011
     conf = "high" if abs(flow)>=35 and rr>=2 else ("medium" if abs(flow)>=20 else "low")
     return TradePlan(sym, side, round(entry,5), round(stop,5), round(target,5),
-                     risk_pct, rr, size, round(size*loss_per_lot,2),
+                     risk_pct, rr, size, round(realized,2),
                      "; ".join(reason), conf, valid)
 
 def plan_to_dict(p): return asdict(p)
