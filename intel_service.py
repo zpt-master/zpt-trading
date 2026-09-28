@@ -5,6 +5,7 @@ Endpoints: GET /intel?symbol=EURUSD&tf=1h  (paid) | GET /health (free)
 """
 import json, os, sys, time, urllib.parse
 import payverify
+from fxintel import moneyflow
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from datetime import datetime, timezone
 HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
@@ -70,10 +71,14 @@ def intel(symbol,tf="1h"):
     ev=event_risk()
     if ev["active"]: bits.append(f"EVENT RISK ACTIVE — {ev['reason']}. Avoid new entries.")
     if r: bits.append(f"RSI(14) = {r[-1]:.1f}.")
+    mf=moneyflow.analyze(cs)
+    if mf.get("flow_score"):
+        bits.append(f"MONEY FLOW: {mf['flow_regime']} (score {mf['flow_score']}, MFI {mf['mfi']}, RVOL {mf['rvol']}). {mf['read']}")
     out={"symbol":symbol,"tf":tf,"ts":datetime.now(timezone.utc).isoformat(),"price":round(price,5),
          "trend":trend,"regime":regime,"adx":strength,"rsi":round(r[-1],1) if r else None,
          "atr":round(a_now,6),"atr_percentile":vol_pct,"vol_state":vol_state,
          "resistance":round(swing_hi,5),"support":round(swing_lo,5),"event_risk":ev,
+         "money_flow":mf,
          "summary":" ".join(bits),
          "quality_note":"Computed intelligence, not investment advice. No guaranteed edge."}
     _cache[key]=(now,out); return out
