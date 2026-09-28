@@ -3,7 +3,7 @@ Order results are polled; transient (10031 network) rejections retry ONCE.
 Trades/day is counted only on a confirmed fill."""
 import sys, json, os, time, urllib.request
 from datetime import datetime, timezone
-import feed, strategy, risk
+import feed, strategy, risk, journal
 
 BRIDGE = "http://localhost:4790"
 TOKEN  = os.environ.get("MT5_TOKEN", "change-me-shared-secret")
@@ -59,6 +59,9 @@ def submit_and_verify(sym, side, vol, sl, tp):
     return False, "exhausted retries"
 
 def main():
+    if "--reconcile" not in sys.argv:
+        try: journal.reconcile()
+        except Exception as e: log(f"reconcile skipped: {e}")
     live = len(sys.argv) > 1 and sys.argv[1].upper() == "LIVE"
     st = bridge("/mt5/state"); snap = st["snapshot"]
     equity, balance = snap["equity"], snap["balance"]
