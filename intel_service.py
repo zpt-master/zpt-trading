@@ -44,7 +44,10 @@ def pctile(series,v):
 def intel(symbol,tf="1h"):
     key=f"{symbol}:{tf}"; now=time.time()
     if key in _cache and now-_cache[key][0]<CACHE_TTL: return _cache[key][1]
-    cs=feed.candles(symbol,interval=tf,rng="10d" if tf=="1h" else "60d")
+    rng={"1h":"10d","4h":"60d","1d":"365d"}.get(tf,"60d")
+    cs=feed.candles(symbol,interval=tf,rng=rng)
+    if len(cs)<220:  # widen the window once rather than failing
+        cs=feed.candles(symbol,interval=tf,rng="365d")
     if len(cs)<220: return {"symbol":symbol,"error":f"insufficient data ({len(cs)} bars)"}
     closes=[c["c"] for c in cs]
     ef,es,et=ema(closes,21),ema(closes,55),ema(closes,200)
