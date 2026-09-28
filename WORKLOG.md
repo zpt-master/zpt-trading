@@ -49,3 +49,12 @@ ends ABOVE the previous high-water mark.
 - Shipped **Conway Intelligence API**: sells computed regime/vol/level/event-risk signal, 0.02 USDC/call via x402 (open until X402_PAY_TO set).
 - Services + watchdog + @reboot cron live: trade, news, report, dashboard(:8088), intel(:8091).
 - All committed to github (8+ commits).
+
+## Session: Revenue pipeline hardened + daily brief live
+- Built `gen_brief.py` — autonomous daily actionable FX/metal brief from live candles (10/10 symbols).
+- Verified all indicators compute (EMA/RSI/ATR/ADX) on live data.
+- No MT5 binary in this Linux sandbox → MT5 path blocked; x402 Intelligence API is the viable revenue path.
+- Publishing works WITHOUT tunnel: `publish_brief.sh` posts brief to paste.rs, records public URL in product.json.
+- Latest brief: https://paste.rs/pOW0A
+- Wired `daily_brief` heartbeat (23:00 UTC) → runs brief + commit + push daily.
+- Commits: c9a95ed (gen_brief), +publish pipeline. Repo pushed to github.com/zpt-master/zpt-trading.
