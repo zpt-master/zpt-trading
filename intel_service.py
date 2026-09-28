@@ -129,16 +129,22 @@ class H(BaseHTTPRequestHandler):
         try: return self._send(json.dumps(intel(sym,tf),indent=2))
         except Exception as e: return self._send(json.dumps({"error":str(e)}),code=500)
     def _has_payment(self):
+        proof=None
         for h in ("X-PAYMENT","X-Payment","Authorization"):
             v=self.headers.get(h)
-            if v and len(v)>20:
-                try:
-                    os.makedirs(os.path.join(HERE,"logs"),exist_ok=True)
-                    open(os.path.join(HERE,"logs","intel_payments.jsonl"),"a").write(
-                        json.dumps({"ts":datetime.now(timezone.utc).isoformat(),"path":self.path,"proof_len":len(v)})+"\n")
-                except Exception: pass
-                return True
-        return False
+            if v: proof=v; break
+        if not proof: return False
+        try:
+            ok,det=payverify.verify_payment(proof,PAY_TO,PRICE_USDC)
+        except Exception as e:
+            ok,det=False,{"reason":"verifier error: %s"%e}
+        try:
+            os.makedirs(os.path.join(HERE,"logs"),exist_ok=True)
+            open(os.path.join(HERE,"logs","intel_payments.jsonl"),"a").write(
+                json.dumps({"ts":datetime.now(timezone.utc).isoformat(),"path":self.path,
+                            "verified":ok,"detail":det})+"\n")
+        except Exception: pass
+        return ok
     def log_message(self,*a): pass
 
 if __name__=="__main__":
