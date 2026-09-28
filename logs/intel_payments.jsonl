@@ -1,2 +1,3 @@
 {"ts": "2026-09-28T17:46:44.869400+00:00", "path": "/intel?symbol=EURUSD", "proof_len": 130}
 {"ts": "2026-09-28T18:00:37.285810+00:00", "path": "/intel?symbol=EURUSD&tf=1h", "verified": false, "detail": {"reason": "verifier error: name 'payverify' is not defined"}}
+{"ts": "2026-09-28T18:00:49.718830+00:00", "path": "/intel?symbol=EURUSD&tf=1h", "verified": false, "detail": {"verified": false, "reason": "no tx hash found in proof"}}

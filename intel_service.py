@@ -4,6 +4,7 @@ event-risk, plain-language summary. Zero third-party deps.
 Endpoints: GET /intel?symbol=EURUSD&tf=1h  (paid) | GET /health (free)
 """
 import json, os, sys, time, urllib.parse
+import payverify
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from datetime import datetime, timezone
 HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
