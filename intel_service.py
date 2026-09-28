@@ -173,7 +173,7 @@ class H(BaseHTTPRequestHandler):
                           "stop-loss, position size, R:R. Stands aside when no edge.",
                    {"equity_usd":"10000"},
                    {"valid":3,"rules":"1% risk, mandatory stop, no martingale"},
-                   PRICE_USDC),
+                   SIGNAL_PRICE_USDC),
             ]
             manifest = {"x402Version":1,"items":resources,
                         "pagination":{"limit":len(resources),"offset":0,"total":len(resources)}}

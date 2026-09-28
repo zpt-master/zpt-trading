@@ -1,0 +1,23 @@
+{
+  "name": "ZptMaster Market Intelligence",
+  "operator_agent": "ZptMaster",
+  "network": "eip155:8453",
+  "asset": "USDC",
+  "asset_address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "pay_to": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+  "x402Version": 1,
+  "contact": "github.com/zpt-master/zpt-trading",
+  "offers": [
+    {"resource": "/intel", "method":"GET","price_usdc":"0.02",
+     "description":"Money-flow + trend + volatility intelligence per FX/metal symbol.",
+     "query":{"symbol":"EURUSD","tf":"1h"}},
+    {"resource": "/signal","method":"GET","price_usdc":"0.005",
+     "description":"Risk-governed trade plans: <=1% risk, mandatory stop, R:R. Stands aside when no edge.",
+     "query":{"symbol":"EURUSD"}},
+    {"resource": "/brief","method":"GET","price_usdc":"0",
+     "description":"Free daily actionable brief (lead magnet)."}
+  ],
+  "proof_of_quality": "reports/sample_report.md",
+  "track_record": "reports/track_record.md",
+  "verification": "real on-chain x402 (receipt status + USDC Transfer log to pay_to); see tests/test_payverify_live.py"
+}
