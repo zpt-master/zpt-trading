@@ -58,3 +58,14 @@ ends ABOVE the previous high-water mark.
 - Latest brief: https://paste.rs/pOW0A
 - Wired `daily_brief` heartbeat (23:00 UTC) → runs brief + commit + push daily.
 - Commits: c9a95ed (gen_brief), +publish pipeline. Repo pushed to github.com/zpt-master/zpt-trading.
+
+## 2026-09-29 — Governed live cycle PROVEN + reachable revenue surface shipped
+- Full pipeline proven end-to-end on REAL bars vs live MT5 relay (:4790, acct 25947886, $100,425).
+  live_trader.py --once: real bars -> indicators -> regime -> moneyflow -> signal -> OOS edge -> decision.
+  Fail-closed: 0 orders unless trend+flow conviction AND positive OOS expectancy align.
+- Genesis settlement verified live: HWM=100425.41, next payout 2026-09-30 08:00 GMT+7, 1 USD=100 cents.
+- Distribution breakthrough: publish_intel.py publishes the digest to a stable PUBLIC url via
+  outbound egress (paste.rs) — https://paste.rs/J0akW — with the USDC-Base pay address embedded.
+  This is the FIRST reachable revenue surface (no domain/tunnel needed).
+- Heartbeats: live_trader_tick */15, publish_intel daily 06:00 UTC, mt5_settlement_report, mt5_live_cycle.
+- Commits: 7f25bb1, 4b17b5b, 316cbbb, 5a4e98b, 795bcca.
