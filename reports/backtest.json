@@ -1,0 +1,62 @@
+{
+  "ts": "2026-09-29T11:03:55.264559Z",
+  "risk_pct": 1.5,
+  "cost_pips": 1.2,
+  "method": "walk-forward, closed-bars only, no lookahead",
+  "per_symbol": {
+    "EURUSD": {
+      "bars": 1200,
+      "src": "yahoo",
+      "trades": 0
+    },
+    "GBPUSD": {
+      "bars": 1200,
+      "src": "yahoo",
+      "trades": 0
+    },
+    "USDJPY": {
+      "bars": 1200,
+      "src": "yahoo",
+      "trades": 0
+    },
+    "AUDUSD": {
+      "bars": 1200,
+      "src": "yahoo",
+      "trades": 0
+    },
+    "USDCAD": {
+      "bars": 1200,
+      "src": "yahoo",
+      "trades": 0
+    },
+    "USDCHF": {
+      "status": "no data",
+      "src": "none",
+      "bars": 0
+    },
+    "NZDUSD": {
+      "status": "no data",
+      "src": "none",
+      "bars": 0
+    },
+    "EURJPY": {
+      "status": "no data",
+      "src": "none",
+      "bars": 0
+    },
+    "GBPJPY": {
+      "status": "no data",
+      "src": "none",
+      "bars": 0
+    },
+    "XAUUSD": {
+      "bars": 1200,
+      "src": "yahoo",
+      "trades": 0
+    }
+  },
+  "aggregate": {
+    "trades": 0
+  },
+  "verdict": "NO EDGE (stand-aside justified)"
+}

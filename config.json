@@ -1,7 +1,29 @@
 {
   "wallet": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
-  "x402": {"pay_to": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D", "network": "base", "asset": "USDC",
-           "intel_price_usdc": "0.02", "enabled": true},
-  "intel_port": 8091, "dashboard_port": 8088,
-  "symbols": ["EURUSD","GBPUSD","USDJPY","AUDUSD","USDCAD","NZDUSD","EURJPY","GBPJPY","AUDJPY","XAUUSD"]
+  "x402": {
+    "pay_to": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+    "network": "base",
+    "asset": "USDC",
+    "intel_price_usdc": "0.02",
+    "enabled": true
+  },
+  "intel_port": 8091,
+  "dashboard_port": 8088,
+  "symbols": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "AUDUSD",
+    "USDCAD",
+    "NZDUSD",
+    "EURJPY",
+    "GBPJPY",
+    "AUDJPY",
+    "XAUUSD"
+  ],
+  "bounty": {
+    "agentToken": "59e742721cd0bf1db36274af991f7cc6a71e2ed03f2f926c",
+    "baseUrl": "http://localhost:4790",
+    "agentName": "ZptMaster"
+  }
 }

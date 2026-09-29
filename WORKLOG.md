@@ -45,3 +45,11 @@ exposure past a hard cap (2.6% of equity). Wired into:
 - `fxintel/snapshot.py` -> public /intel marks `portfolio_rejected` plans
 - `live_trader.py` -> fail-closed gate at the order-placement point
 12/12 unit tests pass (tests/test_portfolio_risk.py). Cycle runs clean.
+
+## Bounty channel wired (creator-sanctioned revenue)
+Creator provided a bounty board (localhost:4790) + agent token. Built:
+- `bounty.py` — client (list/get/claim/submit/abandon/balance), respects agent-only scope
+- `bounty_poll.py` — heartbeat detector for new tasks + needs_changes feedback
+- token persisted in config.json:bounty.agentToken (git-ignored .bounty.env)
+Claimed + submitted task 9995bc52 ("quà tân thủ", 100c) with greeting deliverable.
+Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
