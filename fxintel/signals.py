@@ -59,7 +59,10 @@ def build_plan(symbol, bars, d, equity_usd=10000.0, risk_pct=1.0,
     side="FLAT"; reason=[]; valid=False
     entry=float(d.get("price") or 0) or (float(bars[-1]["c"]) if bars else 0)
     trend=(d.get("trend") or "").upper()
-    regime=(d.get("regime") or "").upper()
+    _reg = d.get("regime")
+    if isinstance(_reg, dict):
+        _reg = _reg.get("trend") or ""
+    regime=(_reg or "").upper()
     flow=float(d.get("flow_score") or 0)
     vol=(d.get("vol_state") or "").upper()
 

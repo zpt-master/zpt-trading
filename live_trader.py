@@ -87,6 +87,13 @@ def preflight(cfg):
         return {"ok": False, "error": "reachable but bad response: %s" % e}
 
 
+def _norm_regime(r):
+    """regime.classify returns a dict; we only need its trend label."""
+    if isinstance(r, dict):
+        return r.get("trend") or "unknown"
+    return r or "unknown"
+
+
 def cycle(dry_run=True):
     st = load_state()
     kill, why = halted()
