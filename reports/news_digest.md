@@ -1,5 +1,5 @@
 # Actionable News Digest
-_Generated 2026-09-28 20:18 UTC_
+_Generated 2026-09-29 06:54 UTC_
 
 Sources reachable: 3/4 · items seen: 50
 
@@ -15,23 +15,23 @@ Sources reachable: 3/4 · items seen: 50
 
 ## Tech (ok)
 - **[ACTIONABLE]** Nvidia wants to put a watchdog chip next to every AI agent
-- I made a visual workspace for AI Automations
-- OpenAI still doesn't seem to have a handle on all of its rogue AI activity
+- Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms
+- It's Time to Investigate the AI Labs
 - Pirating the Pirates
-- California expanded the right to delete today
-- First Steps of the PLC Organization – Independent Public Ledger of Credentials
-- MicroLLM Lab – Try 7 tiny LLM's in the browser
-- GrapheneOS – When an app is slow
+- Tank Body Problem
+- 1996 chat room simulator connected to Win95 and System 7 web desktops
+- Show HN: Pac-Bench – How well can models one-shot a Pac-Man game?
+- ESP32S3 cluster running 1.58-bit (BitNet) Language model
 
 ## Finance (ok)
-- **[ACTIONABLE]** Nvidia sets biggest-ever buyback plan as AI chip competition weighs on stock performance
-- Pope Leo says concerns about AI doom are not ’fake news’
-- Manus launches AI agent platform as startup expands tools
-- Blockchain.com eyes $500M IPO at up to $6B valuation, Bloomberg reports
-- Cleveland-Cliffs slides as report shows Stelco idling plant over US tariffs
-- U.S. stocks slip as OpenAI training halt weighs on AI trade, bonds extend rout
-- Why is Acuity Brands stock sliding today?
-- US FAA delays Boeing 737 MAX 10 certification, shares dive 6%
+- OpenAI apologises for Australian government website hack, pledges to rebuild trust
+- Toyota car sales fall for seventh straight month in Aug on China weakness
+- Taiwan stocks lower at close of trade; Taiwan Weighted down 0.66%
+- Lindt cuts 2026 sales growth forecast on weak European chocolate demand
+- CNN, MS NOW, Politico ask judge to extend block on White House ban
+- Jefferies Names Top Asia-Pacific Internet Stocks
+- Australia stocks higher at close of trade; S&P/ASX 200 up 0.34%
+- Why is Hengrui Pharmaceuticals stock rallying today?
 
 ## FX (UNREACHABLE)
 - _no items / feed unreachable_
