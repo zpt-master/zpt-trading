@@ -1,0 +1,140 @@
+{
+  "generated": "2026-09-29T22:25:45.259033+00:00",
+  "actionable": [
+    {
+      "score": 6,
+      "title": "** [Counting the votes: Warsh faces a tough battle as the Fed girds for expected interest rate hike",
+      "url": "https://www.cnbc.com/2026/09/14/counting-the-votes-warsh-faces-tough-battle-as-fed-girds-for-expected-rate-hike.html"
+    },
+    {
+      "score": 6,
+      "title": "** [Consumer outlook plunges in September as inflation outlook worsens",
+      "url": "https://www.cnbc.com/2026/09/11/consumer-outlook-plunges-in-september-as-inflation-outlook-worsens.html"
+    },
+    {
+      "score": 6,
+      "title": "** [Inflation persisted in August, potentially locking in a Fed interest rate hike",
+      "url": "https://www.cnbc.com/2026/09/11/cpi-inflation-report-august-2026.html"
+    },
+    {
+      "score": 6,
+      "title": "** [Trump: We will win the Iran war very soon and gas prices will come tumbling down",
+      "url": "https://investinglive.com/news/trump-we-will-win-the-iran-war-very-soon-and-gas-prices-will-come-tumbling-down/"
+    },
+    {
+      "score": 5,
+      "title": "** [Consumer sentiment is in the dumps despite a solid economy. Goldman Sachs blames 'lower happiness'",
+      "url": "https://www.cnbc.com/2026/09/19/goldman-sachs-happiness-struggling-consumer-sentiment.html"
+    },
+    {
+      "score": 5,
+      "title": "** [Why Japan\u2019s markets flipped the usual script after central bank rate hike",
+      "url": "https://www.cnbc.com/2026/09/18/japan-rate-hike-stocks-rise-bond-yields-yen-fall.html"
+    },
+    {
+      "score": 5,
+      "title": "** [THORChain rejects Bitget request to block hacker as $6 million moves to bitcoin",
+      "url": "https://www.coindesk.com/tech/2026/09/28/thorchain-rejects-bitget-request-to-block-hacker-as-usd6-million-moves-to-bitcoin"
+    },
+    {
+      "score": 5,
+      "title": "** [BMO Sees Loan Demand Surge as Returns Rise Toward 2027 Targets",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/bmo-sees-loan-demand-surge-020206941.html"
+    },
+    {
+      "score": 4,
+      "title": "** [Consumers hit by one-two punch of oil and rates from Iran war. The estimated bill is $1,700 per household",
+      "url": "https://www.cnbc.com/2026/09/16/oil-prices-treasury-yields-consumers-iran.html"
+    },
+    {
+      "score": 4,
+      "title": "** [UK inflation jumps to 3.1% as energy costs soar",
+      "url": "https://www.cnbc.com/2026/09/16/uk-august-inflation-energy-gasoline.html"
+    }
+  ],
+  "market_view": [
+    {
+      "ts": "2026-09-28T19:10:27Z",
+      "symbol": "EURUSD",
+      "side": "FLAT",
+      "entry": 1.13714,
+      "stop": 0,
+      "target": 0,
+      "rr": 0,
+      "size_lots": 0,
+      "risk_usd": 0,
+      "confidence": "none",
+      "valid": false,
+      "source": "intel",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:28Z",
+      "symbol": "GBPUSD",
+      "side": "FLAT",
+      "entry": 1.32579,
+      "stop": 0,
+      "target": 0,
+      "rr": 0,
+      "size_lots": 0,
+      "risk_usd": 0,
+      "confidence": "none",
+      "valid": false,
+      "source": "intel",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:28Z",
+      "symbol": "USDJPY",
+      "side": "FLAT",
+      "entry": 157.40601,
+      "stop": 0,
+      "target": 0,
+      "rr": 0,
+      "size_lots": 0,
+      "risk_usd": 0,
+      "confidence": "none",
+      "valid": false,
+      "source": "intel",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:28Z",
+      "symbol": "AUDUSD",
+      "side": "FLAT",
+      "entry": 0.70225,
+      "stop": 0,
+      "target": 0,
+      "rr": 0,
+      "size_lots": 0,
+      "risk_usd": 0,
+      "confidence": "none",
+      "valid": false,
+      "source": "intel",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:29Z",
+      "symbol": "USDCAD",
+      "side": "FLAT",
+      "entry": 1.4169,
+      "stop": 0,
+      "target": 0,
+      "rr": 0,
+      "size_lots": 0,
+      "risk_usd": 0,
+      "confidence": "none",
+      "valid": false,
+      "source": "intel",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    }
+  ],
+  "disclaimer": "Informational only. Not financial advice. No proven trading edge claimed.",
+  "paid_endpoints": {
+    "intel": "0.02 USDC",
+    "signal": "0.005 USDC"
+  },
+  "payTo": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+  "network": "eip155:8453",
+  "asset": "USDC 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+}
