@@ -1,2 +1,3 @@
 .bounty.env
 reports/.bounty_seen.json
+journal/paper_forward_state.json

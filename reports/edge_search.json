@@ -1,0 +1,512 @@
+{
+  "ts": "2026-09-29T15:07:02.102536+00:00",
+  "method": "walk-forward 70/30, real bars only, costs charged, no refit on test",
+  "risk_pct": 1.0,
+  "cost_pips": 1.2,
+  "combos_tested": 36,
+  "survivors": [
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 30,
+        "rsi_hi": 70
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 25,
+        "rsi_hi": 75
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 274,
+        "exp_pct": 0.0304,
+        "wr": 0.274,
+        "mdd_pct": 27.4,
+        "pf": 1.039
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3563,
+        "wr": 0.356,
+        "mdd_pct": 8.74,
+        "pf": 1.519
+      },
+      "score": 0.3563
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 30,
+        "rsi_hi": 70
+      },
+      "train": {
+        "trades": 274,
+        "exp_pct": 0.0304,
+        "wr": 0.274,
+        "mdd_pct": 27.4,
+        "pf": 1.039
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3563,
+        "wr": 0.356,
+        "mdd_pct": 8.74,
+        "pf": 1.519
+      },
+      "score": 0.3563
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 25,
+        "rsi_hi": 75
+      },
+      "train": {
+        "trades": 274,
+        "exp_pct": 0.0304,
+        "wr": 0.274,
+        "mdd_pct": 27.4,
+        "pf": 1.039
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3563,
+        "wr": 0.356,
+        "mdd_pct": 8.74,
+        "pf": 1.519
+      },
+      "score": 0.3563
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 2.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 387,
+        "exp_pct": 0.0018,
+        "wr": 0.357,
+        "mdd_pct": 24.48,
+        "pf": 1.003
+      },
+      "test": {
+        "trades": 220,
+        "exp_pct": 0.1944,
+        "wr": 0.418,
+        "mdd_pct": 11.81,
+        "pf": 1.315
+      },
+      "score": 0.1944
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 2.0,
+        "use_rsi": true,
+        "rsi_lo": 30,
+        "rsi_hi": 70
+      },
+      "train": {
+        "trades": 387,
+        "exp_pct": 0.0018,
+        "wr": 0.357,
+        "mdd_pct": 24.48,
+        "pf": 1.003
+      },
+      "test": {
+        "trades": 220,
+        "exp_pct": 0.1944,
+        "wr": 0.418,
+        "mdd_pct": 11.81,
+        "pf": 1.315
+      },
+      "score": 0.1944
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 2.0,
+        "use_rsi": true,
+        "rsi_lo": 25,
+        "rsi_hi": 75
+      },
+      "train": {
+        "trades": 387,
+        "exp_pct": 0.0018,
+        "wr": 0.357,
+        "mdd_pct": 24.48,
+        "pf": 1.003
+      },
+      "test": {
+        "trades": 220,
+        "exp_pct": 0.1944,
+        "wr": 0.418,
+        "mdd_pct": 11.81,
+        "pf": 1.315
+      },
+      "score": 0.1944
+    },
+    {
+      "params": {
+        "tf": 50,
+        "ts": 200,
+        "rr": 2.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 384,
+        "exp_pct": 0.0299,
+        "wr": 0.365,
+        "mdd_pct": 19.78,
+        "pf": 1.044
+      },
+      "test": {
+        "trades": 226,
+        "exp_pct": 0.1737,
+        "wr": 0.412,
+        "mdd_pct": 9.94,
+        "pf": 1.278
+      },
+      "score": 0.1737
+    }
+  ],
+  "top10_by_test": [
+    {
+      "params": {
+        "tf": 50,
+        "ts": 200,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 269,
+        "exp_pct": -0.1369,
+        "wr": 0.23,
+        "mdd_pct": 45.57,
+        "pf": 0.832
+      },
+      "test": {
+        "trades": 127,
+        "exp_pct": 0.3854,
+        "wr": 0.362,
+        "mdd_pct": 11.86,
+        "pf": 1.569
+      },
+      "score": 0.3854
+    },
+    {
+      "params": {
+        "tf": 50,
+        "ts": 200,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 30,
+        "rsi_hi": 70
+      },
+      "train": {
+        "trades": 269,
+        "exp_pct": -0.1369,
+        "wr": 0.23,
+        "mdd_pct": 45.57,
+        "pf": 0.832
+      },
+      "test": {
+        "trades": 127,
+        "exp_pct": 0.3854,
+        "wr": 0.362,
+        "mdd_pct": 11.86,
+        "pf": 1.569
+      },
+      "score": 0.3854
+    },
+    {
+      "params": {
+        "tf": 50,
+        "ts": 200,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 25,
+        "rsi_hi": 75
+      },
+      "train": {
+        "trades": 269,
+        "exp_pct": -0.1369,
+        "wr": 0.23,
+        "mdd_pct": 45.57,
+        "pf": 0.832
+      },
+      "test": {
+        "trades": 127,
+        "exp_pct": 0.3854,
+        "wr": 0.362,
+        "mdd_pct": 11.86,
+        "pf": 1.569
+      },
+      "score": 0.3854
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 30,
+        "rsi_hi": 70
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 25,
+        "rsi_hi": 75
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 10,
+        "ts": 30,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 275,
+        "exp_pct": -0.0897,
+        "wr": 0.244,
+        "mdd_pct": 48.62,
+        "pf": 0.889
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3625,
+        "wr": 0.356,
+        "mdd_pct": 16.09,
+        "pf": 1.533
+      },
+      "score": 0.3625
+    },
+    {
+      "params": {
+        "tf": 10,
+        "ts": 30,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 30,
+        "rsi_hi": 70
+      },
+      "train": {
+        "trades": 275,
+        "exp_pct": -0.0897,
+        "wr": 0.244,
+        "mdd_pct": 48.62,
+        "pf": 0.889
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3625,
+        "wr": 0.356,
+        "mdd_pct": 16.09,
+        "pf": 1.533
+      },
+      "score": 0.3625
+    },
+    {
+      "params": {
+        "tf": 10,
+        "ts": 30,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 25,
+        "rsi_hi": 75
+      },
+      "train": {
+        "trades": 275,
+        "exp_pct": -0.0897,
+        "wr": 0.244,
+        "mdd_pct": 48.62,
+        "pf": 0.889
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3625,
+        "wr": 0.356,
+        "mdd_pct": 16.09,
+        "pf": 1.533
+      },
+      "score": 0.3625
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 274,
+        "exp_pct": 0.0304,
+        "wr": 0.274,
+        "mdd_pct": 27.4,
+        "pf": 1.039
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3563,
+        "wr": 0.356,
+        "mdd_pct": 8.74,
+        "pf": 1.519
+      },
+      "score": 0.3563
+    }
+  ],
+  "verdict": "EDGE FOUND - candidates warrant paper-forward testing"
+}

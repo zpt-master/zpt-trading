@@ -1,0 +1,113 @@
+{
+  "best_stable": {
+    "tf": 20,
+    "ts": 50,
+    "rr": 3.0,
+    "use_rsi": false,
+    "rsi_lo": 0,
+    "rsi_hi": 100
+  },
+  "stable": [
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 30,
+        "rsi_hi": 70
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 50,
+        "rr": 3.0,
+        "use_rsi": true,
+        "rsi_lo": 25,
+        "rsi_hi": 75
+      },
+      "train": {
+        "trades": 262,
+        "exp_pct": 0.0664,
+        "wr": 0.282,
+        "mdd_pct": 30.0,
+        "pf": 1.087
+      },
+      "test": {
+        "trades": 133,
+        "exp_pct": 0.3825,
+        "wr": 0.361,
+        "mdd_pct": 7.55,
+        "pf": 1.565
+      },
+      "score": 0.3825
+    },
+    {
+      "params": {
+        "tf": 20,
+        "ts": 100,
+        "rr": 3.0,
+        "use_rsi": false,
+        "rsi_lo": 0,
+        "rsi_hi": 100
+      },
+      "train": {
+        "trades": 274,
+        "exp_pct": 0.0304,
+        "wr": 0.274,
+        "mdd_pct": 27.4,
+        "pf": 1.039
+      },
+      "test": {
+        "trades": 135,
+        "exp_pct": 0.3563,
+        "wr": 0.356,
+        "mdd_pct": 8.74,
+        "pf": 1.519
+      },
+      "score": 0.3563
+    }
+  ],
+  "note": "forward paper-test required before any live capital"
+}

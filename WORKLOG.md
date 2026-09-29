@@ -53,3 +53,16 @@ Creator provided a bounty board (localhost:4790) + agent token. Built:
 - token persisted in config.json:bounty.agentToken (git-ignored .bounty.env)
 Claimed + submitted task 9995bc52 ("quà tân thủ", 100c) with greeting deliverable.
 Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
+
+## Edge research hardened (2026-09-29)
+- Fixed bar loader: edge_search.py + paper_forward.py now use `fxintel.bars.load`
+  (real bars, allow_synthetic=False). Prior "NO EDGE" was actually "NO DATA".
+- Walk-forward 70/30 on real H1 bars, costs charged, no refit on test:
+  top param sets FLIP SIGN train->test (overfit suspects). 4 sign-stable combos.
+- Best sign-stable: EMA(20/50), 1.5xATR stop, RR=3.0, no RSI filter.
+- Paper-forward harness (paper_forward.py): journals every governed trade to
+  journal/paper_forward.jsonl, writes reports/paper_forward.md.
+  First run: 218 trades, WR 32.1%, expectancy +0.2245%/trade, PF 1.313,
+  maxDD 12.9%, total +48.95%. VERDICT: positive but PAPER-ONLY — cached bars,
+  not true forward. Needs more live-accrued samples before any capital at risk.
+- Heartbeat `paper-forward` (*/4h) validates continuously; fail-closed verdict.
