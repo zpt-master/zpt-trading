@@ -1,1 +1,1 @@
-{"mode":"sim","live":false,"equity":10000.0,"base_url":"http://127.0.0.1:5000","paths":{"account":"/account","price":"/price","order":"/order","close":"/close","positions":"/positions"}}
+{"mode":"relay","live":false,"ledger_url":"http://127.0.0.1:4790","ledger_token":"change-me-shared-secret","equity":100425.38}

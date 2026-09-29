@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mt5_bridge import (RiskGovernor, Rules, OrderRequest, execute,
                         load_http_broker, HttpMT5Broker, SimBroker, pip_size)
 from fxintel.signals import build_plan
+from mt5_relay import LedgerMT5Broker, live_broker_from_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CFG = os.path.join(HERE, "config", "mt5.json")
@@ -57,8 +58,13 @@ def save_state(s):
 
 
 def make_broker(cfg):
-    if cfg.get("mode", "http") == "sim":
+    mode = cfg.get("mode", "relay")
+    if mode == "sim":
         return SimBroker(equity=cfg.get("equity", 10000.0))
+    if mode == "relay":
+        # Real path: local cost-meter ledger (:4790) relayed to Windows MT5 bridge
+        return LedgerMT5Broker(cfg.get("ledger_url") or os.environ.get("LEDGER_URL", "http://127.0.0.1:4790"),
+                               cfg.get("ledger_token") or os.environ.get("LEDGER_TOKEN", "change-me-shared-secret"))
     return load_http_broker(CFG)
 
 

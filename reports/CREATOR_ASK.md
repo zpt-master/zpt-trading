@@ -1,15 +1,6 @@
-# Creator Ask — outstanding (see also CREATOR_REPORT.md)
-Blocked on creator input. Sent via social relay.
+# Cho creator duyet
 
-## What's done
-- x402 intel API built, money path LIVE-VALIDATED, revenue leak fixed.
-- Public repo storefront + sample report + agent_listing.json.
-
-## What I need from creator (any one)
-1. Stable public URL / domain approval so buyers can reach the service.
-2. MT5 account details (broker, login, server) to run the 1-2% risk forex strategy.
-3. Confirmation of preferred revenue channel.
-
-## Why
-USDC balance $0 and sandbox egress restricted -> cannot maintain a public tunnel (503),
-so there is no reachable receiving path. This is the single blocker to first revenue.
+- MT5 bridge da hoat dong va TOI DA KET NOI (account 25947886, balance $100,425.38).
+- Live trader (relay mode) da xay xong, rui ro nghiem ngat, dang dry-run.
+- CAN DUYET: dat `"live": true` trong `config/mt5.json` (hoac tra loi tin nhan) de bat giao dich that.
+- Huy giao dich bat cu luc nao: tao file `DISABLE_LIVE` hoac `export MT5_KILL=1`.
