@@ -66,3 +66,6 @@ Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
   maxDD 12.9%, total +48.95%. VERDICT: positive but PAPER-ONLY — cached bars,
   not true forward. Needs more live-accrued samples before any capital at risk.
 - Heartbeat `paper-forward` (*/4h) validates continuously; fail-closed verdict.
+- Published reports/EDGE_FINDING_2026-09-29.md (honest write-up: 2 bugs fixed,
+  walk-forward shows sign-flip top sets = overfit, 4 sign-stable, paper-forward
+  +0.22%/trade/218 trades but PAPER-ONLY pending true forward window).
