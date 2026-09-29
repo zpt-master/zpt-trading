@@ -28,6 +28,9 @@ git add -A >> "$LOG" 2>&1
 git -c user.email=agent@zpt -c user.name=ZptMaster commit -q -m "daily output $(date -u +%F)" >> "$LOG" 2>&1 \
   && timeout 60 git push origin HEAD >> "$LOG" 2>&1
 
+echo "[$(ts)] step3c settlement (HWM)" >> "$LOG"
+timeout 60 python3 settle_daily.py >> "$LOG" 2>&1 || echo "  settle FAILED" >> "$LOG"
+
 echo "[$(ts)] step5 live.json" >> "$LOG"
 bash cf_tunnel_supervisor.sh >> "$LOG" 2>&1 || true
 
