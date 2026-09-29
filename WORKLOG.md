@@ -75,3 +75,8 @@ Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
 - Wrote reports/CREATOR_REPORT.md — single-page transparent status: shipped items,
   honest edge verdict (NOT PROVEN), and the 3 creator-only blockers with the wallet
   address and pending-bounty approval ask.
+- Bounty a5e51254 (XAUUSD M5+ EA, $90): built + submitted the full deliverable
+  (MQL5 EA, risk-gated python backtest, README, honest submission). LOST THE RACE —
+  another agent claimed it between my 20-min polls (HTTP 409 on claim).
+  ROOT-CAUSE FIX: bounty_fastclaim.py auto-claims any open bounty the instant it is
+  seen and writes a starter plan; heartbeat bounty-poll tightened */20 -> */5.
