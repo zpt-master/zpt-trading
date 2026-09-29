@@ -27,6 +27,7 @@ from mt5_bridge import (RiskGovernor, Rules, OrderRequest, execute,
 from fxintel.signals import build_plan
 from fxintel.bars import load as load_bars, is_real as bars_are_real
 from fxintel.edge import best as edge_best
+import nukida_discipline as _nuk
 from mt5_relay import LedgerMT5Broker, live_broker_from_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -183,6 +184,12 @@ def cycle(dry_run=True):
             st["orders"].append({"ts": datetime.now(timezone.utc).isoformat(),
                                  "sym": sym, "skipped": "plan error: %s" % e})
             continue
+                # --- Nukida discipline gate (genesis: study nukida.co) ---
+        _ved = _nuk.evaluate()
+        if _ved.action in ("BLOCK", "COOLDOWN"):
+            print("HOLD %-7s nukida-discipline %s: %s" % (sym, _ved.action, _ved.reasons[-1][:70]))
+            continue
+        # --- end discipline gate ---
         if not getattr(plan, "valid", False):
             print("SKIP %-7s plan invalid (%s)" % (sym, getattr(plan, "rationale", "")[:40]))
             continue
