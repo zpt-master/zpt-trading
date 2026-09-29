@@ -79,7 +79,7 @@ def build():
             elif line.startswith(("## ", "### ")):
                 out.append(f"<h4>{html.escape(line.lstrip('# '))}</h4>")
             elif line.startswith(("- ", "* ")):
-                out.append f"<li>{html.escape(line[2:])}</li>" if False else out.append(f"<li>{html.escape(line[2:])}</li>")
+                out.append(f"<li>{html.escape(line[2:])}</li>")
             elif line.strip() == "":
                 out.append("<br>")
             else:
