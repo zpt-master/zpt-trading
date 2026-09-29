@@ -2,5 +2,81 @@
  "day": "2026-09-29",
  "day_start_equity": 10000.0,
  "halted_today": false,
- "orders": []
+ "orders": [
+  {
+   "ts": "2026-09-29T02:37:46.016763+00:00",
+   "sym": "EURUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:37:46.629567+00:00",
+   "sym": "GBPUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:37:47.129265+00:00",
+   "sym": "USDJPY",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:37:47.692552+00:00",
+   "sym": "AUDUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:37:48.199003+00:00",
+   "sym": "XAUUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:38:51.502744+00:00",
+   "sym": "EURUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:38:51.999361+00:00",
+   "sym": "GBPUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:38:52.499996+00:00",
+   "sym": "USDJPY",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:38:53.035239+00:00",
+   "sym": "AUDUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:38:53.530628+00:00",
+   "sym": "XAUUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:39:26.792162+00:00",
+   "sym": "EURUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:39:27.325212+00:00",
+   "sym": "GBPUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:39:27.847106+00:00",
+   "sym": "USDJPY",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:39:28.345457+00:00",
+   "sym": "AUDUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  },
+  {
+   "ts": "2026-09-29T02:39:28.828352+00:00",
+   "sym": "XAUUSD",
+   "skipped": "plan error: 'dict' object has no attribute 'upper'"
+  }
+ ]
 }

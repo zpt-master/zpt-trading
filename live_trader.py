@@ -25,6 +25,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mt5_bridge import (RiskGovernor, Rules, OrderRequest, execute,
                         load_http_broker, HttpMT5Broker, SimBroker, pip_size)
 from fxintel.signals import build_plan
+from fxintel.bars import load as load_bars, is_real as bars_are_real
+from fxintel.edge import best as edge_best
 from mt5_relay import LedgerMT5Broker, live_broker_from_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -33,6 +35,10 @@ KILL = os.path.join(HERE, "DISABLE_LIVE")
 STATE = os.path.join(HERE, "reports", "live_state.json")
 SYMBOLS = ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "XAUUSD"]
 DAILY_LOSS_LIMIT_PCT = 5.0
+# HARD pre-trade gate: a live order is placed ONLY if the strategy shows
+# positive out-of-sample expectancy on REAL bars for that symbol.
+EDGE_GATE = os.environ.get("EDGE_GATE", "1") != "0"
+EDGE_MIN_EXP = float(os.environ.get("EDGE_MIN_EXP", "0.03"))
 
 
 def halted():
@@ -117,15 +123,86 @@ def cycle(dry_run=True):
     broker = make_broker(cfg)
     placed = 0
     for sym in SYMBOLS:
+        # Real OHLC bars (bridge -> yahoo -> cache); no synthetic for live.
         try:
-            plan = build_plan(sym, [], {}, equity_usd=eq_now, risk_pct=1.5)
+            raw, bsrc = load_bars(sym, "H1", 400, allow_synthetic=False)
         except Exception:
+            raw, bsrc = [], "none"
+        if not raw or not bars_are_real(bsrc):
+            st["orders"].append({"ts": datetime.now(timezone.utc).isoformat(),
+                                 "sym": sym, "skipped": "no real bars (%s)" % bsrc})
+            print("SKIP %-7s no real bars (%s)" % (sym, bsrc))
+            continue
+        # Normalize to the h/l/c/o shape the signal + indicator modules expect.
+        bars = [{"o": b.get("open", b.get("o")), "h": b.get("high", b.get("h")),
+                 "l": b.get("low", b.get("l")), "c": b.get("close", b.get("c")),
+                 "time": b.get("time")} for b in raw]
+        # Intel dict for the signal engine (trend/regime/vol/flow/price).
+        intel = {}
+        closes = [b["c"] for b in bars]
+        try:
+            from fxintel.indicators import ema as _ema, rsi as _rsi, atr as _atr_raw, adx as _adx_raw
+            e20 = (_ema(closes, 20) or [None])[-1]
+            e50 = (_ema(closes, 50) or [None])[-1]
+            e200 = (_ema(closes, 200) or [None])[-1]
+            rsi_v = (_rsi(closes, 14) or [None])[-1]
+            atr_v = (_atr_raw(bars, 14) or [None])[-1]
+            adx_v = (_adx_raw(bars, 14) or [None])[-1]
+            intel["trend"] = "up" if (e20 and e50 and e20 > e50) else ("down" if (e20 and e50) else "flat")
+            intel["_ema_trend"] = intel["trend"]
+        except Exception:
+            e20 = e50 = e200 = rsi_v = atr_v = adx_v = None
+            intel["trend"] = "flat"
+        # Real regime from scalars (fail-soft to "unknown").
+        try:
+            from fxintel.regime import classify as _regime_classify
+            _rg = _regime_classify(bars[-1]["c"], e20, e50, e200, rsi_v, adx_v, atr_v)
+            intel["regime"] = (_rg.get("trend") if isinstance(_rg, dict) else _rg) or "unknown"
+        except Exception:
+            intel["regime"] = "unknown"
+        # REAL money flow (MFI/CMF/RVOL -> flow_score in [-100,100]).
+        try:
+            from fxintel import moneyflow as _mf
+            ana = _mf.analyze(bars)
+            intel["flow_score"] = float(ana.get("flow_score") or 0.0)
+            intel["moneyflow"] = ana
+        except Exception:
+            intel["flow_score"] = 0.0
+        intel["vol_state"] = "normal"
+        intel["price"] = bars[-1]["c"]
+        try:
+            plan = build_plan(sym, bars, intel, equity_usd=eq_now, risk_pct=1.5)
+        except Exception as e:
+            st["orders"].append({"ts": datetime.now(timezone.utc).isoformat(),
+                                 "sym": sym, "skipped": "plan error: %s" % e})
             continue
         if not getattr(plan, "valid", False):
+            print("SKIP %-7s plan invalid (%s)" % (sym, getattr(plan, "rationale", "")[:40]))
             continue
         direction = getattr(plan, "direction", "").lower()
         if direction not in ("buy", "sell"):
             continue
+
+        # --- EDGE GATE (hard): must show OOS positive expectancy on real bars ---
+        edge_ok, edge_note, edge_rep = True, "gate off", None
+        if EDGE_GATE:
+            bars, src = load_bars(sym, "H1", 400, allow_synthetic=False)
+            if not bars or not bars_are_real(src):
+                edge_ok, edge_note = False, "no real bars (%s)" % src
+            else:
+                er = edge_best(sym, bars, min_expectancy_R=EDGE_MIN_EXP)
+                edge_rep = er.to_dict()
+                edge_ok = bool(er.approved)
+                edge_note = "%s %s trades=%d exp=%+.3fR pf=%.2f" % (
+                    er.strategy, "APPROVED" if er.approved else "REJECT",
+                    er.trades, er.expectancy_R, er.profit_factor)
+        st.setdefault("edge", {})[sym] = {"ok": edge_ok, "note": edge_note, "report": edge_rep}
+        print("EDGE %-7s %s | %s" % (sym, "PASS" if edge_ok else "BLOCK", edge_note))
+        if not edge_ok:
+            st["orders"].append({"ts": datetime.now(timezone.utc).isoformat(),
+                                 "sym": sym, "edge_blocked": True, "note": edge_note})
+            continue
+
         px = broker.price(sym)
         pip = pip_size(sym)
         stop = px - 20 * pip if direction == "buy" else px + 20 * pip
