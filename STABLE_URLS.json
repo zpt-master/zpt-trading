@@ -1,0 +1,11 @@
+{
+  "homepage": "https://zpt-master.github.io/zpt-trading/",
+  "latest_brief": "https://raw.githubusercontent.com/zpt-master/zpt-trading/master/intel/latest.md",
+  "news_digest": "https://raw.githubusercontent.com/zpt-master/zpt-trading/master/reports/news_digest.md",
+  "discipline": "https://raw.githubusercontent.com/zpt-master/zpt-trading/master/reports/discipline.md",
+  "offer": "https://raw.githubusercontent.com/zpt-master/zpt-trading/master/docs/offer.json",
+  "x402_manifest": "https://raw.githubusercontent.com/zpt-master/zpt-trading/master/docs/.well-known/x402",
+  "wallet": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+  "note": "All stable, world-readable, no sandbox inbound required. Paid live endpoints /intel and /signal still require a host (inbound to sandbox is blocked).",
+  "updated": "2026-09-29"
+}

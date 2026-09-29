@@ -10,6 +10,7 @@ URL" half of our blocker for content (the /intel API still needs a host).
 import json, os, subprocess, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+STABLE_URLS = os.path.join(HERE, 'STABLE_URLS.json')
 WALLET = "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D"
 REMOTE = "https://raw.githubusercontent.com/zpt-master/zpt-trading/master"
 

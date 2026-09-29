@@ -1,0 +1,13 @@
+{
+  "x402Version": 1,
+  "resources": [
+    {"id":"intel","description":"Multi-symbol FX regime+flow+governed plans","accepts":[
+      {"scheme":"exact","network":"base","asset":"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+       "maxAmountRequired":"20000","payTo":"0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+       "mimeType":"application/json"}]},
+    {"id":"signal","description":"Risk-capped trade plans","accepts":[
+      {"scheme":"exact","network":"base","asset":"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+       "maxAmountRequired":"5000","payTo":"0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+       "mimeType":"application/json"}]}
+  ]
+}
