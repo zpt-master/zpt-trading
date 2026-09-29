@@ -32,3 +32,7 @@
 - Self-test passes: bridge detects no broker state yet (EA not running) and
   correctly pushes 0 signals because the engine is standing aside (no aligned
   conviction). Fail-closed end-to-end.
+=== 2026-09-29T07:00:13Z session close ===
+shipped: news_digest | governed engine | mt5 bridge (EA+IPC) | x402 API /intel /signal /brief | RSS feed | track_record | daily_pipeline heartbeat
+live: https://plate-root-lives-folder.trycloudflare.com  health/intel(402)/feed/track_record verified
+remaining (creator-dependent): USDC-on-Base funding | stable host | live MT5 creds
