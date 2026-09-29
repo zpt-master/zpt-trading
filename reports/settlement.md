@@ -13,3 +13,4 @@ Generated: 2026-09-29T09:45:09.050393+07:00
 Rule: at 08:00 GMT+7 the rise of the period peak above the mark is credited
 (1 USD = 100 cents = 1:1). If peak <= mark, the day counts as a loss and the
 mark is NOT lowered (drawdown high-water mark) — per genesis.
+| 2026-09-29 | 100425.41 | 100425.41 | +0.00 | 0 | FLAT | paper(no broker) |
