@@ -130,6 +130,14 @@ def cycle(dry_run=True):
     gov = RiskGovernor(Rules())
     broker = make_broker(cfg)
     placed = 0
+    # Portfolio concentration gate: collect this cycle's candidates first so that
+    # correlated pairs (e.g. long EURUSD + long GBPUSD) can't stack into one big bet.
+    try:
+        from fxintel import portfolio_risk as _PR
+    except Exception:
+        _PR = None
+    _cycle_candidates = []
+    _cycle_kept = []
     for sym in SYMBOLS:
         # Real OHLC bars (bridge -> yahoo -> cache); no synthetic for live.
         try:
@@ -196,6 +204,11 @@ def cycle(dry_run=True):
         direction = getattr(plan, "direction", "").lower()
         if direction not in ("buy", "sell"):
             continue
+        # stage the candidate for the portfolio gate (applied just below)
+        if _PR is not None:
+            _cycle_candidates.append({"symbol": sym, "side": direction,
+                                      "valid": True,
+                                      "confidence": getattr(plan, "confidence", 0)})
 
         # --- EDGE GATE (hard): must show OOS positive expectancy on real bars ---
         edge_ok, edge_note, edge_rep = True, "gate off", None
@@ -217,6 +230,17 @@ def cycle(dry_run=True):
                                  "sym": sym, "edge_blocked": True, "note": edge_note})
             continue
 
+        # --- PORTFOLIO CONCENTRATION GATE (fail-closed): block correlated stacking ---
+        if _PR is not None:
+            _cand = {"symbol": sym, "side": direction, "risk_pct": 1.5}
+            _breach, _why = _PR.would_breach(_cycle_kept, _cand)
+            if _breach:
+                print("HOLD %-7s portfolio gate: %s" % (sym, _why))
+                st["orders"].append({"ts": datetime.now(timezone.utc).isoformat(),
+                                     "sym": sym, "held": "portfolio:%s" % _why})
+                continue
+            _cycle_kept.append(_cand)
+        # --- end portfolio gate ---
         px = broker.price(sym)
         pip = pip_size(sym)
         stop = px - 20 * pip if direction == "buy" else px + 20 * pip

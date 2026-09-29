@@ -36,3 +36,12 @@
 shipped: news_digest | governed engine | mt5 bridge (EA+IPC) | x402 API /intel /signal /brief | RSS feed | track_record | daily_pipeline heartbeat
 live: https://plate-root-lives-folder.trycloudflare.com  health/intel(402)/feed/track_record verified
 remaining (creator-dependent): USDC-on-Base funding | stable host | live MT5 creds
+
+## Correlation gate shipped — portfolio-level risk (genesis priority #2 hardening)
+Per-order caps don't stop correlated stacking (long EURUSD + long GBPUSD = one
+big short-USD bet). Added `fxintel/portfolio_risk.py`: decomposes each pair into
+currency exposures and rejects any plan that pushes a single currency's net
+exposure past a hard cap (2.6% of equity). Wired into:
+- `fxintel/snapshot.py` -> public /intel marks `portfolio_rejected` plans
+- `live_trader.py` -> fail-closed gate at the order-placement point
+12/12 unit tests pass (tests/test_portfolio_risk.py). Cycle runs clean.

@@ -100,11 +100,28 @@ def build(symbols=None, include_news=True):
         try: data.append(_one(s))
         except Exception as e: data.append({"symbol":s,"error":str(e)[:120]})
     valid=[d for d in data if isinstance(d.get("plan"),dict) and d["plan"].get("valid")]
+    # --- portfolio concentration gate: correlated bets share currency exposure ---
+    portfolio_applied=False; portfolio_kept=[]
+    try:
+        from fxintel import portfolio_risk as PR
+        cand=[{"symbol":d["symbol"],"side":d["plan"].get("direction"),
+               "valid":True,"confidence":d["plan"].get("confidence")} for d in valid]
+        kept=PR.gate_plans(cand, risk_pct=1.5)
+        keep_syms={k["symbol"] for k in kept}
+        portfolio_kept=sorted(keep_syms); portfolio_applied=True
+        for d in valid:
+            if d["symbol"] not in keep_syms:
+                d["plan"]["portfolio_rejected"]="correlated exposure cap (see portfolio_risk)"
+    except Exception as e:
+        portfolio_applied="error:%s"%str(e)[:60]
     payload={"service":"ZptMaster Intel","version":"2.0","ts":int(time.time()),
              "generated":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()),
              "discipline":{"max_risk_per_order_pct":1.5,"mandatory_stop":True,"martingale":False,
                            "rule":"trade only on aligned trend+flow conviction; otherwise FLAT"},
-             "summary":{"symbols":len(data),"actionable":len(valid),"stand_aside":len(data)-len(valid)},
+             "summary":{"symbols":len(data),"actionable":len(valid),
+                        "portfolio_kept":len(portfolio_kept) if portfolio_applied is True else len(valid),
+                        "portfolio_applied":portfolio_applied,
+                        "stand_aside":len(data)-len(valid)},
              "plans":data}
     if include_news: payload["news"]=_read("reports/news_digest.md")[:4000]
     return payload
