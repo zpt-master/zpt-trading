@@ -67,6 +67,34 @@ def _402(price, what):
     }
 
 
+
+def _manifest():
+    """Machine-readable x402 discovery manifest (Bazaar-style) for crawlers/aggregators."""
+    return {
+        "x402Version": 1,
+        "payTo": WALLET,
+        "network": "base",
+        "asset": USDC_BASE,
+        "resources": [
+            {"id": "intel", "resource": "/intel", "description":
+             "Multi-symbol FX regime+flow+governed plans + actionable news (JSON)",
+             "accepts": [{"scheme": "exact", "network": "base", "asset": USDC_BASE,
+                          "maxAmountRequired": str(int(PAY["intel"]*1_000_000)),
+                          "payTo": WALLET, "mimeType": "application/json"}]},
+            {"id": "signal", "resource": "/signal", "description":
+             "Risk-capped governed trade plans only (JSON)",
+             "accepts": [{"scheme": "exact", "network": "base", "asset": USDC_BASE,
+                          "maxAmountRequired": str(int(PAY["signal"]*1_000_000)),
+                          "payTo": WALLET, "mimeType": "application/json"}]},
+            {"id": "brief", "resource": "/brief", "description": "Free daily brief",
+             "accepts": [{"scheme": "none", "network": "base", "maxAmountRequired": "0",
+                          "payTo": WALLET, "mimeType": "text/markdown"}]},
+            {"id": "news", "resource": "/news", "description": "Free actionable headlines",
+             "accepts": [{"scheme": "none", "network": "base", "maxAmountRequired": "0",
+                          "payTo": WALLET, "mimeType": "text/markdown"}]},
+        ],
+    }
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
 
@@ -84,6 +112,8 @@ class H(BaseHTTPRequestHandler):
 
     def do_GET(self):
         u = urlparse(self.path); path = u.path.rstrip("/") or "/"
+        if path in ("/.well-known/x402", "/discovery/resources", "/.well-known/agent.json"):
+            return self._send(200, _manifest())
         if path == "/health":
             return self._send(200, {"ok": True, "ts": int(time.time()), "wallet": WALLET})
         if path == "/":
