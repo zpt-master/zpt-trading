@@ -1,3 +1,11 @@
+[2026-09-29T06:58:11Z] pipeline start
+[2026-09-29T06:58:11Z] step1 news
+wrote reports/news_digest.md (33 lines, 30 items seen)
+[2026-09-29T06:58:23Z] step2 governed cycle
+SKIP USDJPY  plan invalid (no aligned trend+flow conviction -> stan)
+SKIP XAUUSD  plan invalid (no aligned trend+flow conviction -> stan)
+cycle done: 0 live orders placed (live=False)
+[2026-09-29T06:58:25Z] step3 brief
 # Daily Market Brief — 2026-09-29 06:58 UTC
 
 _Risk-governed. Honest. No trade is better than a bad trade._
@@ -19,3 +27,4 @@ _Risk-governed. Honest. No trade is better than a bad trade._
 - Trades only on aligned trend + flow; otherwise FLAT.
 
 _Paper/analysis only until a broker (MT5) bridge exists._
+[2026-09-29T06:58:30Z] step4 commit/push

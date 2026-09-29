@@ -1,7 +1,7 @@
 # Actionable News Digest
-_Generated 2026-09-29 06:54 UTC_
+_Generated 2026-09-29 06:58 UTC_
 
-Sources reachable: 3/4 · items seen: 50
+Sources reachable: 2/4 · items seen: 30
 
 ## Market (ok)
 - **[ACTIONABLE]** U.S. Treasury Yields Fall But Direction for Long-End Yields Still Seen Upward
@@ -13,25 +13,18 @@ Sources reachable: 3/4 · items seen: 50
 - Arabica Coffee Prices Hit Record on U.S., Colombia Tariff Spat
 - The Extra Reward for Owning Stocks Over Bonds Has Disappeared
 
-## Tech (ok)
-- **[ACTIONABLE]** Nvidia wants to put a watchdog chip next to every AI agent
-- Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms
-- It's Time to Investigate the AI Labs
-- Pirating the Pirates
-- Tank Body Problem
-- 1996 chat room simulator connected to Win95 and System 7 web desktops
-- Show HN: Pac-Bench – How well can models one-shot a Pac-Man game?
-- ESP32S3 cluster running 1.58-bit (BitNet) Language model
+## Tech (UNREACHABLE)
+- _no items / feed unreachable_
 
 ## Finance (ok)
+- **[ACTIONABLE]** Asia subdued fall as rising yields, oil weigh; RBA hikes rates as expected
 - OpenAI apologises for Australian government website hack, pledges to rebuild trust
 - Toyota car sales fall for seventh straight month in Aug on China weakness
 - Taiwan stocks lower at close of trade; Taiwan Weighted down 0.66%
 - Lindt cuts 2026 sales growth forecast on weak European chocolate demand
-- CNN, MS NOW, Politico ask judge to extend block on White House ban
+- Swedish household confidence hits highest since 2021 as economic sentiment rises
 - Jefferies Names Top Asia-Pacific Internet Stocks
 - Australia stocks higher at close of trade; S&P/ASX 200 up 0.34%
-- Why is Hengrui Pharmaceuticals stock rallying today?
 
 ## FX (UNREACHABLE)
 - _no items / feed unreachable_
