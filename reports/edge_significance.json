@@ -1,0 +1,21 @@
+{
+  "ts": "2026-09-29T19:08:51.644152+00:00",
+  "trades": 218,
+  "bootstrap": {
+    "exp_mean_pct": 0.2245,
+    "exp_ci95": [
+      -0.0136,
+      0.4707
+    ],
+    "pf_point": 1.313,
+    "pf_ci95": [
+      0.983,
+      1.722
+    ]
+  },
+  "permutation": {
+    "observed_mean_R": 0.2245,
+    "p_value": 0.0421
+  },
+  "verdict": "EDGE NOT PROVEN (CI includes 0 or p>=0.05) - keep capital safe, continue paper-testing"
+}

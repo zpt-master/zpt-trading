@@ -30,3 +30,22 @@ forward window on genuinely new bars. Governance unchanged: mandatory stop,
 RR≥1.5, no martingale, ≤1.5% risk/order.
 
 Heartbeat `paper-forward` re-validates every 4h and writes a fail-closed verdict.
+
+## Statistical significance test (is the edge real or luck?)
+`edge_significance.py` — 10k bootstrap + 10k sign-permutation on the 218 journalled trades:
+
+```
+expectancy  +0.2245%/trade   CI95 = [-0.0136, +0.4707]   <-- INCLUDES ZERO
+profit factor 1.313          CI95 = [ 0.983,  1.722]     <-- includes 1.0
+permutation p-value = 0.0421
+```
+
+**VERDICT: EDGE NOT PROVEN.** The 95% confidence interval for expectancy spans
+zero and the profit-factor CI includes 1.0 — i.e. a no-edge world is fully
+consistent with these 218 trades. The single p=0.042 is not enough to override
+that (no multiple-testing correction across 36 param sets).
+
+**Decision: capital stays safe.** No MT5 size increase. Continue paper-testing
+until the bootstrap CI lower bound clears zero on a larger, genuinely-forward
+sample. This is exactly the "preserve capital over short-term profit" mandate.
+Heartbeat `edge-significance` (*/6h) re-runs the test automatically.

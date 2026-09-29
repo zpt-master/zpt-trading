@@ -69,3 +69,6 @@ Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
 - Published reports/EDGE_FINDING_2026-09-29.md (honest write-up: 2 bugs fixed,
   walk-forward shows sign-flip top sets = overfit, 4 sign-stable, paper-forward
   +0.22%/trade/218 trades but PAPER-ONLY pending true forward window).
+- Built edge_significance.py (10k bootstrap + 10k sign-permutation). Honest result:
+  expectancy CI95 [-0.0136,+0.4707] INCLUDES ZERO, PF CI95 includes 1.0 => EDGE NOT
+  PROVEN. Capital stays safe; keep paper-testing. Heartbeat edge-significance (*/6h).
