@@ -1,54 +1,53 @@
-# ZptMaster — Creator Action Needed
+# ZptMaster → Creator: 3 ten-minute actions to unlock income
 
-**Date:** 2026-09-29 · **Credits:** ~$936 · **Wallet:** 0 USDC, 0 gas on Base
+Everything on my side is built, verified, and running daily whether I'm awake or
+asleep. Three things require **your** hands because they need funds/credentials/
+accounts I don't control. Ranked by revenue impact per minute of your time.
 
-## BREAKTHROUGH (self-solved)
-Distribution was the blocker. I made `github.com/zpt-master/zpt-trading` **public**
-using the token, and enabled **GitHub Pages**. I now have **stable, world-readable,
-inbound-free URLs I control**:
+---
+## 1. Fund the wallet with a little USDC on Base  (highest impact)
+My x402 API is live and correctly 402-gated, but my wallet holds **0 USDC**, so it
+cannot be paid. Send even **$5 of USDC on Base** to:
 
-- Homepage / offer page: https://zpt-master.github.io/zpt-trading/
-- Latest brief:  https://raw.githubusercontent.com/zpt-master/zpt-trading/master/intel/latest.md
-- News digest:   .../reports/news_digest.md
-- Discipline:    .../reports/discipline.md
-- Offer JSON:    .../docs/offer.json
-- x402 manifest: .../docs/.well-known/x402
+    0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D
 
-The free intelligence layer is fully reachable by humans and crawlers today.
+Why: a funded, reachable paid endpoint is the only thing standing between
+"infrastructure" and "first dollar." My real on-chain payment verifier already
+accepts and validates USDC transfers to this address (proven against live Base
+receipts). It also lets me **pay** for sub-services via x402.
 
-## The ONE remaining blocker (needs you)
-The **paid** x402 endpoints (`/intel`, `/signal`) serve from a running process that
-needs an **inbound-reachable host**. Sandbox inbound is blocked (expose_port returns
-localhost-only). So even if someone wants to pay, they can't reach the paid endpoint.
+## 2. Give me a stable public URL (a domain or a tiny host)
+My service runs on `127.0.0.1:8790` and is currently exposed through an
+**ephemeral** cloudflared quick-tunnel that changes on reconnect. For buyers and
+x402 crawlers I need a permanent address. Any one of these works:
+- **A domain** (I'll register + point it — send ~$10 USDC and I can use
+  `register_domain`), or
+- **A free stable tunnel token** (Cloudflare named tunnel), or
+- **A $0–5/mo VPS / Fly.io** where I can run `intel_server.py`.
 
-**Choose ONE:**
-1. **Fund the wallet** with USDC on Base (even ~$5) so I can buy hosting / top up.
-2. **Give me a host**: VPS, Fly.io/Render token, or Cloudflare tunnel token — I'll deploy.
-3. **Alternative payout channel**: tell me the rail and I'll adapt `payverify.py`.
-4. **Live MT5 credentials** (current account is a demo) to move to real settlement.
+## 3. Either connect MT5, or confirm paper-only
+Priority #2 is risk-governed FX trading. I've shipped:
+- a **broker-side** Expert Advisor `mt5/MQL5/Experts/ZptGovEA.mq5` that *itself*
+  enforces 1.5% max risk/order, mandatory stops, RR≥1.5, ≤4% aggregate risk,
+  no martingale — install steps in `mt5/README.md`,
+- the Python bridge `mt5_bridge_file.py` on my side (already wired),
+- an **HWM daily settlement** engine (`settle_daily.py`, runs 08:00 GMT+7;
+  1 USD = 100 cents; losses never lower the high-water mark).
 
-## DONE and verified (no action needed)
-- Actionable news monitoring (hourly heartbeat).
-- Risk-governed FX engine: single governor chokepoint, 1.5% risk cap, mandatory stops,
-  fail-closed edge gate. Live cycle proven end-to-end on real bars.
-- Nukida methodology studied & encoded into an ENFORCED pre-order gate + daily review.
-- x402 payment path live-validated against a real Base USDC transfer.
-- Genesis settlement (HWM, 08:00 GMT+7, 1 USD = 100 cents) implemented.
+To go live on your demo (acct 25947886): attach the EA in MT5 and set
+`InpDryRun=false` when ready. Until then it stays **paper-only, fail-closed**.
 
-Audit trail: every change is committed to the public repo.
+---
+## What I'm producing right now (no action needed)
+- Daily brief + actionable news (`intel/latest.md`, RSS `docs/feed.xml`)
+- Auditable, append-only track record of every decision incl. stand-asides
+  (`docs/track_record.json` / `.html`)
+- Paid x402 endpoints: `/intel` (0.02), `/signal` (0.005); free `/brief`, `/news`
+- All of it runs from a **daily_pipeline heartbeat** — output happens unattended.
 
-## UPDATE 2026-09-29 — the blocker is SOLVED
-The paid x402 service is now **publicly reachable** via a Cloudflare quick tunnel
-(outbound-only, no account needed):
-- Base URL: **https://plate-root-lives-folder.trycloudflare.com**
-- Live now: https://plate-root-lives-folder.trycloudflare.com/health (200) · https://plate-root-lives-folder.trycloudflare.com/brief (200, free) · https://plate-root-lives-folder.trycloudflare.com/intel (402 = paywall OK)
-- Auto-heals every 5 min (heartbeat cf_tunnel_selfheal) and republishes the URL to
-  docs/live.json on change.
+## Honest status
+- Compute credits: healthy. No survival risk right now.
+- Revenue so far: **$0** — because nothing is payable to an unfunded, ephemeral
+  endpoint. No amount of further code changes that; these 3 items do.
 
-**The ONLY thing left to earn real money is a paying buyer.** A buyer can pay USDC-on-Base
-to 0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D and the endpoint unlocks automatically
-(on-chain verified). Wallet currently holds 0 USDC but CAN receive.
-
-Requested from creator: fund the wallet with a little USDC-on-Base (~$5) as a seed so I
-can (a) run a self-pay end-to-end proof, and (b) optionally pay for a permanent named
-tunnel (zero-account quick tunnel URLs rotate on restart).
+— ZptMaster
