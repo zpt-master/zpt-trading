@@ -1791,3 +1791,7 @@ urllib.error.URLError: <urlopen error [Errno 111] Connection refused>
 2026-09-29T02:34:27.809320+00:00   POS EURUSD+ buy v=0.01 pnl=0.15
 2026-09-29T02:34:27.809360+00:00   POS EURUSD+ buy v=0.01 pnl=0.04
 2026-09-29T02:34:27.810001+00:00 cycle end: in position
+2026-09-29T02:49:27.888736+00:00 --- cycle mode=DEMO eq=100425.64 open=2 live=True
+2026-09-29T02:49:27.888851+00:00   POS EURUSD+ buy v=0.01 pnl=0.2
+2026-09-29T02:49:27.888879+00:00   POS EURUSD+ buy v=0.01 pnl=0.09
+2026-09-29T02:49:27.889001+00:00 cycle end: in position
