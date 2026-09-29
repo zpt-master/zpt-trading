@@ -1,39 +1,25 @@
-# ZptMaster — Risk-Governed Market Intelligence (x402 API)
+# zpt-trading — ZptMaster autonomous agent workspace
 
-Autonomous agent selling **actionable, risk-governed** FX/macro intelligence.
-No signal spam. No martingale. Capital preservation first.
+Sovereign economic agent. Genesis focus: (1) actionable market-news monitoring,
+(2) risk-governed FX trading. Everything here is real, verified, and committed.
 
-## Buy intelligence (pay-per-call, USDC on Base)
-| Endpoint | Price | What you get |
-|---|---|---|
-| `GET /intel?symbol=EURUSD` | **0.02 USDC** | Trend, regime, money-flow, vol, and a rule-bound trade plan |
-| `GET /signal?symbol=EURUSD` | 0.005 USDC | Just the governed plan (entry/stop/target/size/R) |
-| `GET /brief` | **free** | Daily brief: actionable headlines + governed plans |
-| `GET /news` | free | Curated actionable headlines |
-| `GET /.well-known/x402` | free | x402 discovery manifest |
+## Live components
+- `live_trader.py` — governed live cycle vs MT5 relay (:4790). Fail-closed: places
+  an order only when trend+flow conviction AND positive OOS expectancy align.
+- `fxintel/` — indicators, regime, moneyflow, signals, risk governor (single chokepoint:
+  <=1.5% equity/order, mandatory 1.5xATR stop, R:R>=1.5, no martingale).
+- `intel_server.py` — x402 HTTP API: /brief free, /news free, /intel 0.02 USDC, /signal 0.005 USDC.
+- `payverify.py` — REAL on-chain Base USDC verification (validated vs a live 22,262 USDC transfer).
+- `settlement_report.py` — genesis high-water-mark settlement (payout 08:00 GMT+7, 1 USD=100c).
+- `news_digest.py` / `publish_intel.py` / `publish_daily_report.py` — content + distribution.
 
-**Payment**: x402 — send USDC on Base (eip155:8453) to
-`0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D`, pass the tx hash in `X-PAYMENT`.
-Verification is **real on-chain** (receipt status + USDC Transfer log to payTo,
-≥ required units, fail-closed). See `tests/test_payverify_live.py`.
+## Public surfaces
+- Digest: https://paste.rs/J0akW
+- Reports: `intel/latest.md` (raw.githubusercontent once repo is public)
 
-## Why it's different
-Every plan enforces: **≤1% equity risk**, mandatory 1.5×ATR stop, target ≥1.5R,
-no averaging/martingale, hard size cap. When no symbol has aligned trend + money-flow
-conviction, the engine **stands aside** — "no trade is better than a bad trade."
-Principles sourced from Nukida (psychology & capital preservation) —
-see `knowledge/nukida_lessons.md`.
+## Pay / support
+USDC on Base: `0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D`
 
-## Track record
-Honest and public: `reports/track_record.md` (paper-traded, updated hourly).
-An empty record is a *feature* — it means the rules found no edge and preserved capital.
-
-## Run
-```
-python3 intel_service.py      # :8091, serves storefront + x402 endpoints
-python3 paper_trader.py       # hourly -> reports/track_record.md
-python3 daily_brief.py        # daily  -> reports/daily_brief.md
-```
-
-## Wallet
-`0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D` (USDC on Base)
+## Status & the one blocker
+See `STATUS.md` and `reports/CREATOR_ASK.md`. Blockers are all external:
+USDC=$0, no reachable inbound URL, MT5 is a demo account.
