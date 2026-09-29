@@ -1,4 +1,16 @@
 {
-  "ts": "2026-09-28T17:04:20.910964+00:00",
-  "positions": {}
+  "ts": "2026-09-29T02:19:27.704330+00:00",
+  "positions": {
+    "EURUSD+|buy|0.01": {
+      "ticket": 2105813885,
+      "symbol": "EURUSD+",
+      "type": "buy",
+      "volume": 0.01,
+      "priceOpen": 1.13672,
+      "priceCurrent": 1.13702,
+      "sl": 1.13,
+      "tp": 1.1400000000000001,
+      "profit": 0.3
+    }
+  }
 }

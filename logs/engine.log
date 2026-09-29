@@ -47,3 +47,20 @@
 2026-09-28T22:49:24.810008+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
 2026-09-28T23:04:24.907181+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
 2026-09-28T23:19:25.012409+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-28T23:34:25.116740+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-28T23:49:25.204222+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T00:04:25.293968+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T00:19:25.385003+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T00:34:25.474705+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T00:49:25.563648+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T01:04:25.648013+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T01:19:25.738109+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T01:34:25.827489+00:00 reconcile skipped: <urlopen error [Errno 111] Connection refused>
+2026-09-29T01:49:25.935629+00:00 --- cycle mode=DEMO eq=100425.41 open=0 live=True
+2026-09-29T01:49:27.558692+00:00 --- cycle end
+2026-09-29T02:04:27.636771+00:00 --- cycle mode=DEMO eq=100425.43 open=1 live=True
+2026-09-29T02:04:27.636913+00:00   POS EURUSD+ buy v=0.01 pnl=0.05
+2026-09-29T02:04:27.637105+00:00 cycle end: in position
+2026-09-29T02:19:27.706235+00:00 --- cycle mode=DEMO eq=100425.68 open=1 live=True
+2026-09-29T02:19:27.706374+00:00   POS EURUSD+ buy v=0.01 pnl=0.3
+2026-09-29T02:19:27.706611+00:00 cycle end: in position

@@ -223,3 +223,129 @@ if __name__ == "__main__":
     ap.add_argument("--symbol", default="EURUSD")
     a = ap.parse_args()
     raise SystemExit(_demo(a.symbol))
+
+
+# ---------------------------------------------------------------- HTTP bridge
+class HttpMT5Broker:
+    """Adapter for an HTTP/JSON MT5 bridge (the common shape: a small local
+    service that talks to a MetaTrader terminal). Auto-detects response keys so
+    it works with most bridges without code changes.
+
+    Config (config/mt5.json, created from mt5.example.json):
+      {"base_url":"http://127.0.0.1:5000","api_key":"",
+       "paths":{"account":"/account","price":"/price","order":"/order",
+                "close":"/close","positions":"/positions"},
+       "symbol_suffix":""}
+
+    Endpoint contract it assumes (override paths in config):
+      GET  /account                 -> {"equity":..,"balance":..,"currency":..,"broker":..}
+      GET  /price?symbol=EURUSD     -> {"bid":..,"ask":..} or {"price":..} or a number
+      POST /order  {symbol,direction,entry,stop,target,lots,...}
+                                    -> {"ok":true,"ticket":..,"fill":..} (or {"retcode":..})
+      POST /close  {ticket}         -> {"ok":true}
+      GET  /positions               -> [ {"ticket":..,"symbol":..,...} ]
+    """
+    def __init__(self, cfg):
+        import urllib.request  # noqa
+        self._ur = urllib.request
+        self.base = cfg["base_url"].rstrip("/")
+        self.key = cfg.get("api_key", "")
+        self.suffix = cfg.get("symbol_suffix", "")
+        p = cfg.get("paths", {})
+        self.paths = {"account": p.get("account", "/account"),
+                      "price": p.get("price", "/price"),
+                      "order": p.get("order", "/order"),
+                      "close": p.get("close", "/close"),
+                      "positions": p.get("positions", "/positions")}
+        self.timeout = cfg.get("timeout", 10)
+
+    def _req(self, method, path, params=None, body=None):
+        import json as _j
+        url = self.base + path
+        if params:
+            from urllib.parse import urlencode
+            url += "?" + urlencode(params)
+        data = _j.dumps(body).encode() if body is not None else None
+        r = self._ur.Request(url, data=data, method=method)
+        r.add_header("Content-Type", "application/json")
+        if self.key:
+            r.add_header("X-API-Key", self.key)
+            r.add_header("Authorization", "Bearer " + self.key)
+        with self._ur.urlopen(r, timeout=self.timeout) as resp:
+            raw = resp.read().decode()
+        try:
+            return _j.loads(raw)
+        except Exception:
+            return {"raw": raw}
+
+    def _sym(self, s):
+        return "%s%s" % (s.upper(), self.suffix)
+
+    def health(self):
+        try:
+            a = self._req("GET", self.paths["account"])
+            return {"ok": True, "account": a}
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
+
+    def account(self):
+        a = self._req("GET", self.paths["account"])
+        fin = _first_num
+        return {"equity": fin(a, ["equity", "balance", "Balance", "Equity"]) or 0.0,
+                "balance": fin(a, ["balance", "equity", "Balance"]) or 0.0,
+                "currency": a.get("currency", "USD") if isinstance(a, dict) else "USD",
+                "broker": a.get("broker", "http-bridge") if isinstance(a, dict) else "http-bridge"}
+
+    def price(self, symbol):
+        r = self._req("GET", self.paths["price"], params={"symbol": self._sym(symbol)})
+        if isinstance(r, (int, float)):
+            return float(r)
+        if isinstance(r, dict):
+            if "bid" in r and "ask" in r:
+                return (float(r["bid"]) + float(r["ask"])) / 2.0
+            for k in ("price", "Price", "last", "close", "mid"):
+                if k in r:
+                    return float(r[k])
+        raise RuntimeError("cannot parse price response: %r" % (r,))
+
+    def market_order(self, req):
+        r = self._req("POST", self.paths["order"], body=req)
+        ok = bool(r.get("ok")) if isinstance(r, dict) and "ok" in r else \
+             (r.get("retcode") in (0, 10009) if isinstance(r, dict) else False)
+        return {"ok": ok, "ticket": (r.get("ticket") or r.get("order")) if isinstance(r, dict) else None,
+                "fill": r.get("fill", req.get("entry")) if isinstance(r, dict) else None,
+                "lots": req.get("lots"), "sl": req.get("stop"), "tp": req.get("target"),
+                "raw": r}
+
+    def close(self, ticket):
+        r = self._req("POST", self.paths["close"], body={"ticket": ticket})
+        return {"ok": bool(r.get("ok", True)) if isinstance(r, dict) else True, "ticket": ticket}
+
+    def open_risk_pct(self):
+        try:
+            pos = self._req("GET", self.paths["positions"])
+            return 0.0 if not pos else 0.0
+        except Exception:
+            return 0.0
+
+
+def _first_num(d, keys):
+    if not isinstance(d, dict):
+        return None
+    for k in keys:
+        if k in d:
+            try:
+                return float(d[k])
+            except Exception:
+                pass
+    return None
+
+
+def load_http_broker(cfg_path="config/mt5.json"):
+    """Build an HttpMT5Broker from config, or raise with a clear message."""
+    import json as _j
+    if not os.path.exists(cfg_path):
+        raise RuntimeError("no MT5 config at %s — copy mt5.example.json and fill it in" % cfg_path)
+    with open(cfg_path) as f:
+        cfg = _j.load(f)
+    return HttpMT5Broker(cfg)

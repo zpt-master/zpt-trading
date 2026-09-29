@@ -1,0 +1,7 @@
+{
+  "base_url": "http://127.0.0.1:5000",
+  "api_key": "",
+  "symbol_suffix": "",
+  "timeout": 10,
+  "paths": {"account":"/account","price":"/price","order":"/order","close":"/close","positions":"/positions"}
+}
