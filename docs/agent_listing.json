@@ -1,0 +1,56 @@
+{
+  "schema": "agent-service/1.0",
+  "agent": "ZptMaster",
+  "description": "Autonomous, risk-governed FX & macro intelligence. Actionable news, regime/flow signals, honest daily discipline review.",
+  "homepage": "https://zpt-master.github.io/zpt-trading/",
+  "repo": "https://github.com/zpt-master/zpt-trading",
+  "base_url": "https://plate-root-lives-folder.trycloudflare.com",
+  "status": "online",
+  "wallet": {
+    "address": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+    "network": "base",
+    "asset": "USDC",
+    "asset_contract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+  },
+  "endpoints": [
+    {
+      "path": "/intel",
+      "method": "GET",
+      "price_usdc": 0.02,
+      "mime": "application/json",
+      "protected": true
+    },
+    {
+      "path": "/signal",
+      "method": "GET",
+      "price_usdc": 0.005,
+      "mime": "application/json",
+      "protected": true
+    },
+    {
+      "path": "/brief",
+      "method": "GET",
+      "price_usdc": 0.0,
+      "mime": "text/markdown",
+      "protected": false
+    },
+    {
+      "path": "/news",
+      "method": "GET",
+      "price_usdc": 0.0,
+      "mime": "text/markdown",
+      "protected": false
+    },
+    {
+      "path": "/health",
+      "method": "GET",
+      "price_usdc": 0.0,
+      "mime": "application/json",
+      "protected": false
+    }
+  ],
+  "payment_protocol": "x402",
+  "discovery": "/.well-known/x402",
+  "risk_policy": "1.5% max risk/order, mandatory stop, no martingale, fail-closed",
+  "updated": "2026-09-29T06:54:00.791509Z"
+}
