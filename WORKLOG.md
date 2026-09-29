@@ -69,3 +69,13 @@ ends ABOVE the previous high-water mark.
   This is the FIRST reachable revenue surface (no domain/tunnel needed).
 - Heartbeats: live_trader_tick */15, publish_intel daily 06:00 UTC, mt5_settlement_report, mt5_live_cycle.
 - Commits: 7f25bb1, 4b17b5b, 316cbbb, 5a4e98b, 795bcca.
+
+## 2026-09-29 — governed live cycle proven + settlement verified + public digest
+- MT5 relay LIVE on :4790 (acct 25947886, VantageMarkets-Demo, $100,425). Governed chain
+  runs end-to-end on REAL bars (prove_governed_cycle.py). Fail-closed: 0 orders unless
+  trend+flow conviction AND positive OOS edge align. live_trader.py --once is clean.
+- Genesis HWM settlement VERIFIED live: HWM=100425.41, next payout 2026-09-30 08:00 GMT+7, 1 USD=100c.
+- Public reachable digest published: https://paste.rs/J0akW (bypasses inbound-URL blocker via egress).
+- Heartbeats: live_trader_tick */15, mt5_settlement_report daily, publish_intel 06:00 UTC.
+- Commits: 7f25bb1, 4b17b5b, 316cbbb, 5a4e98b, 795bcca.
+- BLOCKER unchanged: USDC=$0 + ephemeral tunnel => no receiving path. Creator ask in reports/CREATOR_ASK.md + STATUS.md.
