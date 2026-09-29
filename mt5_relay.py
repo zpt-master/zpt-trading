@@ -55,6 +55,31 @@ class LedgerMT5Broker:
                     continue
         return default
 
+    # -- symbol resolution (broker uses e.g. "EURUSD+") --
+    def resolve_symbol(self, symbol):
+        want = symbol.upper()
+        try:
+            st = self._req("GET", "/mt5/state")
+            snap = st.get("snapshot") or {}
+            # 1) exact match already present
+            for pos in (snap.get("positions") or []):
+                ps = str(pos.get("symbol", ""))
+                if ps.upper() == want or ps.upper().rstrip("+") == want:
+                    return ps
+            # 2) discover a suffix from any position (e.g. "EURUSD+" -> "+")
+            for pos in (snap.get("positions") or []):
+                ps = str(pos.get("symbol", ""))
+                if ps.upper().startswith(want) and ps.upper() != want:
+                    return ps
+            # 3) known Vantage suffix convention
+            if want in ("EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "AUDUSD", "USDCAD"):
+                for pos in (snap.get("positions") or []):
+                    if "+" in str(pos.get("symbol", "")):
+                        return want + "+"
+        except Exception:
+            pass
+        return symbol
+
     # -- broker interface --
     def health(self):
         try:
@@ -122,7 +147,7 @@ class LedgerMT5Broker:
         raise RuntimeError("no price for %s in /mt5/state snapshot" % symbol)
 
     def market_order(self, req, poll_secs=20, interval=1.0):
-        body = {"symbol": req["symbol"], "side": req["direction"], "volume": req["lots"],
+        body = {"symbol": self.resolve_symbol(req["symbol"]), "side": req["direction"], "volume": req["lots"],
                 "sl": req.get("stop"), "tp": req.get("target"),
                 "comment": req.get("comment", "governed")}
         r = self._req("POST", "/mt5/order", body=body)
