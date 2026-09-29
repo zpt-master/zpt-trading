@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 
 # 1) local service
 if ! pgrep -f "intel_server.py" >/dev/null; then
-  nohup python3 -u intel_server.py --host 127.0.0.1 --port 8790 >/tmp/intel.log 2>&1 &
+  nohup env PYTHONPATH="$(pwd)" python3 -u intel_server.py --host 127.0.0.1 --port 8790 >/tmp/intel.log 2>&1 &
   sleep 2
 fi
 

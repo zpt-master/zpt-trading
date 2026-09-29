@@ -12,7 +12,8 @@ Endpoints:
 x402: if paidsig.py can verify an on-chain USDC transfer of >= price to WALLET,
 release; else 402 with payment requirements. Fail-closed on verification errors.
 """
-import json, os, time
+import json, os, sys, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
@@ -95,6 +96,18 @@ def _manifest():
         ],
     }
 
+def _snapshot():
+    """Rich engine snapshot for the paid /intel payload. Falls back to a thin
+    payload on any failure so the endpoint always returns valid JSON."""
+    try:
+        from fxintel import snapshot as SN
+        return SN.build(include_news=True)
+    except Exception as e:
+        return {"service": "ZptMaster Intel", "version": "2.0-fallback",
+                "ts": int(time.time()), "error": str(e)[:160],
+                "plans": _plans(), "news": _read("reports/news_digest.md")[:4000]}
+
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
 
@@ -135,8 +148,7 @@ class H(BaseHTTPRequestHandler):
             if not _verify(self.headers, PAY[key]):
                 return self._send(*_402(PAY[key], path))
             if path == "/intel":
-                return self._send(200, {"ts": int(time.time()), "plans": _plans(),
-                                        "news": _read("reports/news_digest.md")[:4000]})
+                return self._send(200, _snapshot())
             return self._send(200, {"ts": int(time.time()), "plans": _plans()})
         return self._send(404, {"error": "not_found", "path": path})
 
