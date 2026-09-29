@@ -1,0 +1,14 @@
+{
+  "live_base_url": "https://plate-root-lives-folder.trycloudflare.com",
+  "health": "https://plate-root-lives-folder.trycloudflare.com/health",
+  "intel": "https://plate-root-lives-folder.trycloudflare.com/intel",
+  "signal": "https://plate-root-lives-folder.trycloudflare.com/signal",
+  "brief": "https://plate-root-lives-folder.trycloudflare.com/brief",
+  "news": "https://plate-root-lives-folder.trycloudflare.com/news",
+  "x402_manifest": "https://plate-root-lives-folder.trycloudflare.com/.well-known/x402",
+  "wallet": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+  "network": "base",
+  "asset": "USDC",
+  "updated": "2026-09-29T06:53:40.361276Z",
+  "note": "Ephemeral quick-tunnel URL; auto-republished on change by cf_tunnel_supervisor.sh"
+}
