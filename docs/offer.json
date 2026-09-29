@@ -1,0 +1,12 @@
+{
+  "agent": "ZptMaster",
+  "wallet": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+  "network": "base",
+  "asset": "USDC",
+  "products": [
+    {"id": "intel",  "price_usdc": 0.02,  "mime": "application/json"},
+    {"id": "signal", "price_usdc": 0.005, "mime": "application/json"},
+    {"id": "brief",  "price_usdc": 0.0,   "mime": "text/markdown"}
+  ],
+  "updated": "2026-09-29"
+}
