@@ -1,71 +1,35 @@
 # ZptMaster — Creator Report
+_Updated 2026-09-29 (auto-generated from live artifacts)_
 
-_Paper/agent status: alive. Model: deepseek-flash. Repo: github.com/zpt-master/zpt-trading_
+## 1. Bottom line
+Compute credits **$902** (tier: normal, no survival risk). Wallet USDC **$0**.
+Everything built so far is committed & pushed. **No capital is being risked**
+because the trading edge is not yet statistically proven (see §3) — this is the
+correct, capital-preserving posture your genesis prompt demands.
 
-## Genesis priorities — status
+## 2. Shipped & verified (repo: github.com/zpt-master/zpt-trading)
+- **Actionable news monitor** — 4 free RSS feeds, `[ACTIONABLE]` scoring, `reports/news_digest.md`, free `/news`.
+- **Risk-governed trading engine** — single RiskGovernor chokepoint: ≤1.5% risk/order,
+  **mandatory stop**, R:R≥1.5, aggregate open risk ≤4%, lot cap 5.0, **no martingale**.
+- **Correlation gate** — blocks adding a position that piles onto correlated exposure.
+- **x402 intel API** — `/intel` 0.02 USDC, `/signal` 0.005 USDC (both 402-gated), free `/brief`.
+  Payment verification is REAL on-chain (Base USDC receipts), live-validated.
+- **Daily settlement / HWM accounting** — pays 08:00 GMT+7, 1 USD = 100 cents, losses never lower the high-water mark.
+- **Bounty channel** — client + auto-poll heartbeat; first creator task submitted (in review).
 
-### 1) Actionable news monitoring — ✅ SHIPPED
-`news_digest.py`: 4 free RSS feeds, keyword-scored, `[ACTIONABLE]` tags,
-writes `reports/news_digest.md`. Exposed FREE at `/news` (top-of-funnel).
+## 3. Edge research — the honest verdict
+- Fixed a real bug: prior "no edge" verdicts were actually "no data" (wrong loader).
+- Walk-forward 70/30 on real H1 bars: top results **flip sign** train→test (overfit).
+- Paper-forward: 218 trades, WR 32.1%, expectancy **+0.2245%/trade**, PF 1.313.
+- **Significance test: expectancy CI95 = [-0.0136, +0.4707] — INCLUDES ZERO.** PF CI includes 1.0.
+- **Verdict: EDGE NOT PROVEN.** Continue paper-testing; no size increase. Capital safe.
 
-### 2) Risk-governed forex via MT5 — ✅ SHIPPED (paper; awaiting credentials)
-- `mt5_bridge.py`: real MT5 wrapper + deterministic simulator; **RiskGovernor**
-  is the single chokepoint — no order reaches any broker unless it passes:
-  risk <=1.5%/order, **mandatory** stop-loss, R:R>=1.5, aggregate open risk <=4%,
-  hard lot cap 5.0, no martingale/averaging.
-- `auto_trader.py`: autonomous loop signals -> RiskGovernor -> broker -> journal,
-  producing an honest `reports/track_record.md` (empty = no aligned edge = capital preserved).
-- `tests/test_mt5_bridge.py`: 7 tests prove the rules hold (no-stop, low-R:R,
-  aggregate-risk, malformed levels all rejected; sizing exact; cap never exceeded). ALL PASS.
-- **Needs from you:** MT5 broker + login + server to flip SimBroker -> MT5Broker.
+## 4. What I need from you (blockers only you can unblock)
+1. **Fund the wallet** with USDC-on-Base (`0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D`)
+   **or** give a stable hostname/domain — the paid x402 endpoints need a reachable host
+   (sandbox inbound is blocked; current tunnel is ephemeral).
+2. **Live MT5 credentials** (if you want me trading the real demo/live feed rather than paper).
+3. **Approve the pending bounty submission** (task `9995bc52`) so the reward credits.
 
-### Bonus revenue path: x402 market-intelligence API — ✅ BUILT & VERIFIED
-`/intel` 0.02 USDC, `/signal` 0.005 USDC (both **402 payment-gated** — a leak was
-found and fixed), `/brief` free. Payment path LIVE-VALIDATED on real Base USDC
-(tests/test_payverify_live.py). `agent_listing.json` for x402 aggregators.
-
-## The ONE blocker
-USDC balance = $0 and sandbox egress is restricted (expose_port is localhost-only;
-SSH tunnel returns 503) → there is no reachable public receiving path, so nothing
-can currently be sold even though the product works.
-
-## Ask (any one)
-1. A stable public URL/domain (or approve a small USDC domain purchase).
-2. MT5 credentials (broker, login, server).
-3. Preferred revenue channel and I'll rebuild around it.
-
-## Discipline
-Strict risk rules enforced in code and tests. No spam, no self-funding from
-untrusted addresses, no unbounded retries. Credits healthy ($982).
-
-
-## End-to-end governed cycle PROVEN on real bars (2026-09-29)
-
-`prove_governed_cycle.py` runs the *entire* decision chain on LIVE Yahoo H1 bars
-(400 bars/symbol) and prints the final decision for each. Verified output:
-
-| symbol | bars | trend | regime | flow | plan | edge (OOS) | DECISION |
-|--------|------|-------|--------|------|------|-----------|----------|
-| EURUSD | 400 | down | down | -33 | SHORT valid | REJECT exp=+0.018R | BLOCKED (no edge) |
-| GBPUSD | 400 | up | range | +4 | FLAT | REJECT exp=+0.329R | STAND ASIDE |
-| USDJPY | 400 | down | range | +31 | FLAT | APPROVED exp=+0.775R pf=3.82 | STAND ASIDE |
-| AUDUSD | 400 | down | down | +21 | FLAT | APPROVED exp=+0.405R pf=1.93 | STAND ASIDE |
-| XAUUSD | 400 | down | down | -34 | SHORT (invalid: rr) | REJECT exp=+0.054R | STAND ASIDE |
-
-This is the key safety property: the system **fails closed**. It stands aside
-unless BOTH trend+flow conviction AND positive out-of-sample expectancy align.
-A live order can only leave the building through that chain, with risk<=1.5% of
-equity, a mandatory 1.5xATR stop, and a target >=1.5R (no martingale, max 5 lots).
-
-Bugs fixed to make the chain correct:
-- live_trader fed `build_plan` EMPTY bars -> now loads real bars + real regime + real moneyflow.
-- synthetic bars could be cached then re-served as "real" -> synthetic is never persisted; cache entries carry their true source.
-- `edge.py` / `signals.py` assumed different bar key shapes -> both now shape-agnostic.
-- `regime.classify` returns a dict, not a string -> extraction fixed in both callers.
-
-Reproduce: `python3 prove_governed_cycle.py`
-
-BLOCKER (unchanged): USDC=$0 and sandbox egress is restricted (expose_port is
-localhost-only, tunnel drops), so there is no reachable receiving path for a
-buyer to pay us. Everything is built and verified; we need a stable public URL
-(domain) OR MT5 credentials OR a preferred payout channel from the creator.
+## 5. Automatic activity (heartbeats)
+`bounty-poll` */20 · `paper-forward` */4h · `edge-significance` */6h · news digest · settlement.

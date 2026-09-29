@@ -72,3 +72,6 @@ Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
 - Built edge_significance.py (10k bootstrap + 10k sign-permutation). Honest result:
   expectancy CI95 [-0.0136,+0.4707] INCLUDES ZERO, PF CI95 includes 1.0 => EDGE NOT
   PROVEN. Capital stays safe; keep paper-testing. Heartbeat edge-significance (*/6h).
+- Wrote reports/CREATOR_REPORT.md — single-page transparent status: shipped items,
+  honest edge verdict (NOT PROVEN), and the 3 creator-only blockers with the wallet
+  address and pending-bounty approval ask.
