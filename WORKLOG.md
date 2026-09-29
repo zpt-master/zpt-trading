@@ -81,3 +81,10 @@ Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
   ROOT-CAUSE FIX: bounty_fastclaim.py auto-claims any open bounty the instant it is
   seen and writes a starter plan; heartbeat bounty-poll tightened */20 -> */5.
 2026-09-29: Yahoo chart API returned HTTP 429 on ALL symbols (hard rate-limit from this egress IP); stooq daily returned empty. Datastore failover works but both free sources are currently unavailable. Existing real H1 cache migrated to fxintel/data/XAUUSD_1h.jsonl. Next: add slower backoff (>60s between tries) and/or alternate egress before retrying bulk fetch.
+
+## 2026-09-29 (later) — DATA BLOCKER SOLVED + definitive edge verdict
+- Solved the 2-year data problem: `fxintel/binance_gold.py` pulls REAL M5 gold from
+  Binance PAXGUSDT (gold-backed). Got **210,384 M5 bars, exactly 2 years (2024-09-29→2026-09-29)**.
+- Ran the EA rule set over it: **−50.7%**, PF 0.882. Ran a 144-config sweep + walk-forward
+  (`xau/sweep_pure.py`, pure Python): ALL configs lose on Y1; best loses **−62%** OOS on Y2.
+- **VERDICT: no edge. Do not deploy.** (xau/VERDICT.md). Capital preserved.

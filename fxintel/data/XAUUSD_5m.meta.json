@@ -1,0 +1,11 @@
+{
+  "symbol": "XAUUSD",
+  "tf": "5m",
+  "bars": 210384,
+  "source": "binance:PAXGUSDT (gold-backed token ~= XAUUSD)",
+  "period": [
+    "2024-09-29",
+    "2026-09-29"
+  ],
+  "span_days": 730
+}

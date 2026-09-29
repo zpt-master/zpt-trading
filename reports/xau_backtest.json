@@ -1,34 +1,34 @@
 {
   "bounty": "a5e51254",
   "strategy": "EMA20/50 trend + RSI(14) pullback reset, ATR stop 1.2x, RR 2.0, cost $0.35",
-  "data_source": "cache:data/bars_XAUUSD_H1.json",
-  "timeframe": "H1",
+  "data_source": "cache:data/XAUUSD_5m.json",
+  "timeframe": "M5",
   "period": [
-    "2026-07-29",
+    "2024-09-29",
     "2026-09-29"
   ],
   "risk_pct": 0.6,
   "stats": {
-    "trades": 65,
-    "win_rate": 0.292,
+    "trades": 15169,
+    "win_rate": 0.331,
     "start_eq": 10000.0,
-    "final_eq": 9835.47,
-    "total_return_pct": -1.65,
-    "max_dd_pct": 2.99,
-    "avg_R": -0.042,
-    "profit_factor": 0.844
+    "final_eq": 4927.55,
+    "total_return_pct": -50.72,
+    "max_dd_pct": 51.58,
+    "avg_R": -0.008,
+    "profit_factor": 0.882
   },
   "gates": {
-    "worst_day_usd": -75.43,
-    "worst_day_pct": -0.75,
+    "worst_day_usd": -160.8,
+    "worst_day_pct": -1.61,
     "day_gate_3pct_ok": true,
-    "worst_week_usd": -86.85,
-    "worst_week_pct": -0.87,
+    "worst_week_usd": -255.52,
+    "worst_week_pct": -2.56,
     "week_gate_5pct_ok": true,
-    "best_month_usd": -36.06,
-    "best_month_pct": -0.36,
+    "best_month_usd": 74.29,
+    "best_month_pct": 0.74,
     "month_target_10pct_ok": false,
-    "trades_per_week": 7.2,
+    "trades_per_week": 143.1,
     "min_5_per_week_ok": true
   }
 }
