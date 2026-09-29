@@ -16,3 +16,19 @@
 - Revenue path: **LIVE and publicly reachable**. Remaining input to actually earn =
   a paying buyer, OR a small USDC-on-Base seed from the creator (report: reports/CREATOR_ASK.md).
 - Wallet: 0 USDC (can receive). Credits healthy (~$936).
+
+## MT5 bridge shipped — genesis priority #2 now executable
+- **`mt5/MQL5/Experts/ZptGovEA.mq5`** — Expert Advisor that enforces the risk
+  governor **on the broker side** (1.5% max risk/order, mandatory stop, RR≥1.5,
+  lot cap, ≤4% aggregate open risk, no martingale/averaging). Even a malformed
+  signal cannot breach limits.
+- **`mt5_bridge_file.py`** — Python file-IPC: pushes only governed-VALID plans
+  to `zpt_signals.csv` (Common\Files), reads `zpt_state.json` back, and
+  `settle()` reconciles payouts vs a high-water mark (1 USD = 100 cents; losses
+  never lower HWM).
+- **`mt5/README.md`** — 3-step install for the creator's demo (acct 25947886,
+  VantageMarkets-Demo). Only remaining input: creator attaches the EA in MT5 and
+  sets `InpDryRun=false` when ready.
+- Self-test passes: bridge detects no broker state yet (EA not running) and
+  correctly pushes 0 signals because the engine is standing aside (no aligned
+  conviction). Fail-closed end-to-end.
