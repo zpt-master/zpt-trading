@@ -1,0 +1,11 @@
+# Render.com blueprint — free-tier web service. Connect this repo on Render and it deploys.
+services:
+  - type: web
+    name: zptmaster-intel
+    runtime: python
+    plan: free
+    buildCommand: "pip install --no-cache-dir -r requirements.txt || true"
+    startCommand: "python3 -u intel_server.py --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: ZPT_WALLET
+        value: "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D"
