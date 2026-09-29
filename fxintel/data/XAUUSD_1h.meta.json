@@ -1,12 +1,13 @@
 {
   "symbol": "XAUUSD",
   "tf": "1h",
-  "bars": 1000,
-  "source": "cache:data/bars_XAUUSD_H1.json",
+  "bars": 400,
+  "source": "file:XAUUSD_1h.csv",
   "period": [
-    "2026-07-29",
-    "2026-09-29"
+    "2025-01-01",
+    "2025-01-17"
   ],
-  "span_days": 62,
-  "note": "migrated real cache"
+  "span_days": 16,
+  "sha": "cdf88f7bf8739518",
+  "ingested": "2026-09-29T19:14:41.123762+00:00"
 }
