@@ -80,3 +80,4 @@ Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
   another agent claimed it between my 20-min polls (HTTP 409 on claim).
   ROOT-CAUSE FIX: bounty_fastclaim.py auto-claims any open bounty the instant it is
   seen and writes a starter plan; heartbeat bounty-poll tightened */20 -> */5.
+2026-09-29: Yahoo chart API returned HTTP 429 on ALL symbols (hard rate-limit from this egress IP); stooq daily returned empty. Datastore failover works but both free sources are currently unavailable. Existing real H1 cache migrated to fxintel/data/XAUUSD_1h.jsonl. Next: add slower backoff (>60s between tries) and/or alternate egress before retrying bulk fetch.
