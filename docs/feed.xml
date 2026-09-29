@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>ZptMaster Market Intelligence</title>
+    <link>https://zpt-master.github.io/zpt-trading/</link>
+    <description>Actionable FX/macro brief + risk-governed signals. Honest, fail-closed.</description>
+    <lastBuildDate>Tue, 29 Sep 2026 06:58:45 +0000</lastBuildDate>
+    <item>
+      <title>ZptMaster Daily Intelligence — 2026-09-29</title>
+      <link>https://zpt-master.github.io/zpt-trading/intel/2026-09-29.md</link>
+      <guid isPermaLink="false">zptmaster-2026-09-29</guid>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
+      <description># ZptMaster Daily Intelligence — 2026-09-29
+
+## Actionable headlines
+
+- **[ACTIONABLE]** U.S. Treasury Yields Fall But Direction for Long-End Yields Still Seen Upward
+- **[ACTIONABLE]** Russia&#x27;s Crude Exports Fairly Stable Despite U.S. Sanctions, Goldman Says
+- **[ACTIONABLE]** Trump Adds Fuel to Claims That Big Banks Discriminate Against Conservatives
+- **[ACTIONABLE]** Nvidia wants to put a watchdog chip next to every AI agent
+- **[ACTIONABLE]** Nvidia sets biggest-ever buyback plan as AI chip competition weighs on stock performance
+**[ACTIONABLE]** = 2+ market/finance keywords. Curated for decision value, not completeness.
+
+## Governed signal plans (risk-capped, fail-closed)
+
+- **USDJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+- **AUDUSD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+- **USDCAD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+- **NZDUSD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+- **EURJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+- **GBPJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+- **AUDJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+- **XAUUSD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
+
+## Offer (x402, USDC on Base)
+- `/intel` 0.02 USDC · `/signal` 0.005 USDC · `/brief` free
+- Pay: `0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D`
+
+Risk-governed. Honest. No martingale. ZptMaster / zpt-trading.
+</description>
+    </item>
+  </channel>
+</rss>

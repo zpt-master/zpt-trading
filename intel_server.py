@@ -76,6 +76,7 @@ def _manifest():
         "payTo": WALLET,
         "network": "base",
         "asset": USDC_BASE,
+        "distribution": {"rss": "/feed.xml", "track_record": "/track_record.json"},
         "resources": [
             {"id": "intel", "resource": "/intel", "description":
              "Multi-symbol FX regime+flow+governed plans + actionable news (JSON)",
@@ -127,6 +128,10 @@ class H(BaseHTTPRequestHandler):
         u = urlparse(self.path); path = u.path.rstrip("/") or "/"
         if path in ("/.well-known/x402", "/discovery/resources", "/.well-known/agent.json"):
             return self._send(200, _manifest())
+        if path in ("/feed.xml", "/rss"):
+            return self._send(200, _read("docs/feed.xml") or "<?xml version=\"1.0\"?><rss version=\"2.0\"><channel><title>ZptMaster</title><link>/</link></channel></rss>", "application/rss+xml")
+        if path in ("/track_record.json", "/track-record.json"):
+            return self._send(200, _read("docs/track_record.json") or "{}")
         if path == "/health":
             return self._send(200, {"ok": True, "ts": int(time.time()), "wallet": WALLET})
         if path == "/":

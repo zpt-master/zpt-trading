@@ -1,0 +1,415 @@
+{
+  "agent": "ZptMaster",
+  "wallet": "0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D",
+  "discipline": {
+    "max_risk_per_order_pct": 1.5,
+    "mandatory_stop": true,
+    "martingale": false,
+    "fail_closed": true
+  },
+  "note": "Append-only, timestamped decisions. Honest record incl. every stand-aside.",
+  "count": 50,
+  "updated": "2026-09-29T06:58:45.026724Z",
+  "decisions": [
+    {
+      "ts": "2026-09-28T19:10:27Z",
+      "symbol": "EURUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:28Z",
+      "symbol": "GBPUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:28Z",
+      "symbol": "USDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:28Z",
+      "symbol": "AUDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:29Z",
+      "symbol": "USDCAD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:29Z",
+      "symbol": "NZDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:29Z",
+      "symbol": "EURJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:30Z",
+      "symbol": "GBPJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:30Z",
+      "symbol": "AUDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:31Z",
+      "symbol": "XAUUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:33Z",
+      "symbol": "EURUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:33Z",
+      "symbol": "GBPUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:34Z",
+      "symbol": "USDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:34Z",
+      "symbol": "AUDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:34Z",
+      "symbol": "USDCAD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:35Z",
+      "symbol": "NZDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:35Z",
+      "symbol": "EURJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:35Z",
+      "symbol": "GBPJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:36Z",
+      "symbol": "AUDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:10:37Z",
+      "symbol": "XAUUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:40Z",
+      "symbol": "EURUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:40Z",
+      "symbol": "GBPUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:41Z",
+      "symbol": "USDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:42Z",
+      "symbol": "AUDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:42Z",
+      "symbol": "USDCAD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:43Z",
+      "symbol": "NZDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:43Z",
+      "symbol": "EURJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:44Z",
+      "symbol": "GBPJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:44Z",
+      "symbol": "AUDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:45Z",
+      "symbol": "XAUUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:58Z",
+      "symbol": "EURUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:59Z",
+      "symbol": "GBPUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:59Z",
+      "symbol": "USDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:11:59Z",
+      "symbol": "AUDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:12:00Z",
+      "symbol": "USDCAD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:12:00Z",
+      "symbol": "NZDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:12:00Z",
+      "symbol": "EURJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:12:01Z",
+      "symbol": "GBPJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:12:01Z",
+      "symbol": "AUDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T19:12:02Z",
+      "symbol": "XAUUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:44Z",
+      "symbol": "EURUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:44Z",
+      "symbol": "GBPUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:44Z",
+      "symbol": "USDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:45Z",
+      "symbol": "AUDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:45Z",
+      "symbol": "USDCAD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:45Z",
+      "symbol": "NZDUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:46Z",
+      "symbol": "EURJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:46Z",
+      "symbol": "GBPJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:46Z",
+      "symbol": "AUDJPY",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    },
+    {
+      "ts": "2026-09-28T20:18:47Z",
+      "symbol": "XAUUSD",
+      "side": "FLAT",
+      "valid": false,
+      "confidence": "none",
+      "rationale": "no aligned trend+flow conviction -> stand aside"
+    }
+  ]
+}

@@ -28,3 +28,8 @@ _Risk-governed. Honest. No trade is better than a bad trade._
 
 _Paper/analysis only until a broker (MT5) bridge exists._
 [2026-09-29T06:58:30Z] step4 commit/push
+To https://github.com/zpt-master/zpt-trading.git
+   d638c3c..63a10d5  HEAD -> master
+[2026-09-29T06:58:32Z] step5 live.json
+PUBLIC_URL=https://plate-root-lives-folder.trycloudflare.com (changed=no)
+[2026-09-29T06:58:33Z] pipeline done

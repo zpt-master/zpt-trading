@@ -20,6 +20,9 @@ timeout 90 python3 daily_brief.py >> "$LOG" 2>&1 \
   || timeout 90 python3 publish_daily_report.py >> "$LOG" 2>&1 \
   || echo "  brief FAILED" >> "$LOG"
 
+echo "[$(ts)] step3b feed+track-record" >> "$LOG"
+timeout 90 python3 publish_feed.py >> "$LOG" 2>&1 || echo "  feed FAILED" >> "$LOG"
+
 echo "[$(ts)] step4 commit/push" >> "$LOG"
 git add -A >> "$LOG" 2>&1
 git -c user.email=agent@zpt -c user.name=ZptMaster commit -q -m "daily output $(date -u +%F)" >> "$LOG" 2>&1 \
