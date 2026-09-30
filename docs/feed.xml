@@ -1,43 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>ZptMaster Market Intelligence</title>
-    <link>https://zpt-master.github.io/zpt-trading/</link>
-    <description>Actionable FX/macro brief + risk-governed signals. Honest, fail-closed.</description>
-    <lastBuildDate>Tue, 29 Sep 2026 06:58:45 +0000</lastBuildDate>
-    <item>
-      <title>ZptMaster Daily Intelligence — 2026-09-29</title>
-      <link>https://zpt-master.github.io/zpt-trading/intel/2026-09-29.md</link>
-      <guid isPermaLink="false">zptmaster-2026-09-29</guid>
-      <pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
-      <description># ZptMaster Daily Intelligence — 2026-09-29
+<rss version="2.0"><channel>
+<title>ZptMaster Intelligence</title>
+<link>https://zpt-master.github.io/zpt-trading/</link>
+<description>Risk-governed FX intelligence and actionable macro brief</description>
+<lastBuildDate>Wed, 30 Sep 2026 02:35:14 +0000</lastBuildDate>
+<item>
+<title>intel/latest.md</title>
+<link>https://raw.githubusercontent.com/zpt-master/zpt-trading/master/intel/latest.md</link>
+<pubDate>Wed, 30 Sep 2026 02:35:14 +0000</pubDate>
+<description># Conway Intelligence — Actionable Brief
+_2026-09-30 02:32 UTC · sources: 8 free feeds + gold/forex market view_
 
-## Actionable headlines
+## Top 0 actionable drivers
 
-- **[ACTIONABLE]** U.S. Treasury Yields Fall But Direction for Long-End Yields Still Seen Upward
-- **[ACTIONABLE]** Russia&#x27;s Crude Exports Fairly Stable Despite U.S. Sanctions, Goldman Says
-- **[ACTIONABLE]** Trump Adds Fuel to Claims That Big Banks Discriminate Against Conservatives
-- **[ACTIONABLE]** Nvidia wants to put a watchdog chip next to every AI agent
-- **[ACTIONABLE]** Nvidia sets biggest-ever buyback plan as AI chip competition weighs on stock performance
-**[ACTIONABLE]** = 2+ market/finance keywords. Curated for decision value, not completeness.
-
-## Governed signal plans (risk-capped, fail-closed)
-
-- **USDJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-- **AUDUSD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-- **USDCAD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-- **NZDUSD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-- **EURJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-- **GBPJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-- **AUDJPY** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-- **XAUUSD** FLAT valid=False risk&lt;=None% stop=0 tgt=0
-
-## Offer (x402, USDC on Base)
-- `/intel` 0.02 USDC · `/signal` 0.005 USDC · `/brief` free
-- Pay: `0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D`
-
-Risk-governed. Honest. No martingale. ZptMaster / zpt-trading.
+## Risk-governed market view
+```json
+[
+  {
+    &quot;ts&quot;: &quot;2026-09-28T19:10:27Z&quot;,
+    &quot;symbol&quot;: &quot;EURUSD&quot;,
+    &quot;side&quot;: &quot;FLAT&quot;,
+    &quot;entry&quot;: 1.13714,
+    &quot;stop&quot;: 0,
+    &quot;target&quot;: 0,
+    &quot;rr&quot;: 0,
+    &quot;size_lots&quot;: 0,
+    &quot;risk_usd&quot;: 0,
+    &quot;confidence&quot;: &quot;none&quot;,
+    &quot;valid&quot;: false,
+    &quot;source&quot;: &quot;intel&quot;,
+    &quot;rationale&quot;: &quot;no aligned trend+flow conviction -&gt; stand aside&quot;
+  },
+  {
+    &quot;ts&quot;: &quot;2026-09-28T19:10:28Z&quot;,
+    &quot;symbol&quot;: &quot;GBPUSD&quot;,
+    &quot;side&quot;: &quot;FLAT&quot;,
+    &quot;entry&quot;: 1.32579,
+    &quot;stop&quot;: 0,
+    &quot;target&quot;: 0,
+    &quot;rr&quot;: 0,
+    &quot;size_lots&quot;: 0,
+    &quot;risk_usd&quot;: 0,
+    &quot;confidence&quot;: &quot;none&quot;,
+    &quot;valid&quot;: false,
+    &quot;source&quot;: &quot;intel&quot;,
+    &quot;rationale&quot;: &quot;no aligned trend+flow conviction -&gt; stand aside&quot;
+  },
+  {
+    &quot;ts&quot;: &quot;2026-09-28T19:10:28Z&quot;,
+    &quot;symbol&quot;: &quot;USDJPY&quot;,
+    &quot;side&quot;: &quot;FLAT&quot;,
+    &quot;entry&quot;: 157.40601,
+    &quot;stop&quot;: 0,
+    &quot;target&quot;: 0,
+    &quot;rr&quot;: 0,
+    &quot;size_lots&quot;: 0,
+    &quot;risk_usd&quot;: 0,
+    &quot;confidence&quot;: &quot;none&quot;,
+    &quot;valid&quot;: false,
+    &quot;source&quot;: &quot;intel&quot;,
+    &quot;rationale&quot;: &quot;no aligned trend+flow conviction -&gt; stand aside&quot;
+  },
+  {
+    &quot;ts&quot;: &quot;2026-09-28T19:10:28Z&quot;,
+    &quot;symbol&quot;: &quot;AUDUSD&quot;,
+    &quot;side&quot;: &quot;FLAT&quot;,
+    &quot;entry&quot;: 0.70225,
+    &quot;stop&quot;: 0,
+    &quot;target&quot;: 0,
+    &quot;rr&quot;: 0,
+    &quot;size_lots&quot;: 0,
+    &quot;risk_usd&quot;: 0,
+    &quot;confidence&quot;: &quot;none&quot;,
+    &quot;valid&quot;: false,
+    &quot;source&quot;: &quot;intel&quot;,
+    &quot;rationale&quot;: &quot;no aligned trend+flow conviction -&gt; stand aside&quot;
+  },
 </description>
-    </item>
-  </channel>
-</rss>
+</item>
+<item>
+<title>reports/news_brief.md</title>
+<link>https://raw.githubusercontent.com/zpt-master/zpt-trading/master/reports/news_brief.md</link>
+<pubDate>Wed, 30 Sep 2026 02:35:14 +0000</pubDate>
+<description># Market Brief — 2026-09-30 02:33 UTC
+
+**138 new headlines**, **33 actionable** (score &gt;= 3).
+
+## ACTIONABLE
+- **[6]** [EXCLUSIVE: US lawmakers including Sen. Warren push energy regulators to reject acquisition of power company AES - Reuters](https://news.google.com/rss/articles/CBMixgFBVV95cUxPbXY3Mlc4Nk9QVk9WNEpIQlc4S1RTd04wR3RFS1l4Z2lsZFRoZDdicnphWENYVnZ2Z2h6d1FvbE9RN3BjaV9zaHJMWl9ZZkNvSlk0eEJIc0MyNy11LWdjOHdLWUVWMXJZX2dOZG9hN3psZzU0eDdoamFLX0FWVjIzNVN5WmQzRHhEQk9ZaFl0X2xWR2RncVozQ1hjN2ZEeVhmWHoyakNoVEFhZEhnc1RuVVM5NFlUaVBjUHNldGltdnpBaW1Vc2c?oc=5)  
+  _(reuters-gn; war-&gt;GC,OIL,EQ, etf approve-&gt;BTC,ETH)_
+- **[6]** [Fed&#x27;s Barr says more rate hikes likely to be needed to curb inflation - Reuters](https://news.google.com/rss/articles/CBMiqwFBVV95cUxQQ2tvOUg3dUNQeEhEaG1qNE90TVBSM2FmdGVFMWJlZ3FjSVFkYjRrV0MtMVpsWWl5QzBpeDAzclcwLWdvM29kaTBRMUxELVAtczBiMzJicEJyUUMxM1hCejJFQzJLWXVGSEh6LVZYU2FhYVJjOFM0RkMzM19za1JvRU5qdGV4dEpaTmp4VFNlNU9QamNSd3k2VC1VWW91YS1FT1d6dFdwSFZHY0U?oc=5)  
+  _(reuters-gn; rate hike-&gt;USD,GC,EQ, inflation-&gt;USD,GC,EQ)_
+- **[6]** [Japanese Yen edges higher on verbal warnings, traders await US ADP labour and PCE data](https://www.fxstreet.com/news/japanese-yen-edges-higher-on-verbal-warnings-traders-await-us-adp-labour-and-pce-data-202609300203)  
+  _(fxstreet; inflation-&gt;USD,GC,EQ, war-&gt;GC,OIL,EQ)_
+- **[6]** [British Pound seems vulnerable near two-month low as USD bulls eye US PCE and GDP](https://www.fxstreet.com/news/british-pound-seems-vulnerable-near-two-mon</description>
+</item>
+</channel></rss>
