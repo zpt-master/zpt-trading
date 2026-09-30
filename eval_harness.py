@@ -89,7 +89,37 @@ def rule_breakout(bars, i, look=20):
     return 0
 
 
-RULES = {"momentum": rule_momentum, "meanrev": rule_meanrev, "breakout": rule_breakout}
+def rule_moneyflow(bars, i, look=20):
+    """Nukida thesis: value follows MONEY FLOW, not price alone.
+
+    Flow proxy = sum of (close-open) * range over the window, i.e. net
+    directional pressure. Long when net flow is strongly positive, short when
+    strongly negative, flat in the middle (no conviction -> stand aside).
+    """
+    if i < look + 1:
+        return 0
+    flow = 0.0
+    tot = 0.0
+    for j in range(i - look + 1, i + 1):
+        b = bars[j]
+        rng = max(b["h"] - b["l"], 1e-9)
+        flow += (b["c"] - b["o"]) * rng
+        tot += rng
+    if tot <= 0:
+        return 0
+    norm = flow / tot  # in price units, scale by window price
+    ref = bars[i]["c"]
+    if ref <= 0:
+        return 0
+    z = norm / ref  # relative flow
+    if z > 0.0005:
+        return 1
+    if z < -0.0005:
+        return -1
+    return 0
+
+
+RULES = {"moneyflow": rule_moneyflow, "momentum": rule_momentum, "meanrev": rule_meanrev, "breakout": rule_breakout}
 
 
 def backtest(bars, rule, a=1.0, atr_mult=1.5, rr=1.5):
