@@ -66,7 +66,7 @@ th{{color:var(--mut);font-weight:500}}.pos{{color:var(--acc)}}.neg{{color:var(--
 Paid: <code>GET /intel</code> (0.02 USDC) · <code>GET /signal</code> (0.005 USDC)<br>
 Pay to <code>0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D</code></p></div>
 </div></body></html>"""
-    open(os.path.join(DOCS, "index.html"), "w").write(htmlout)
+    open(os.path.join(DOCS, "dashboard.html"), "w").write(htmlout)
     return len(rows)
 
 

@@ -58,8 +58,11 @@ def track_record():
     p = "docs/track_record.json"
     hist = []
     if os.path.exists(p):
-        try: hist = json.load(open(p))
-        except Exception: hist = []
+        try:
+            d = json.load(open(p))
+            hist = d if isinstance(d, list) else (d.get("history", []) if isinstance(d, dict) else [])
+        except Exception:
+            hist = []
     entry = {"ts": dt.datetime.now(dt.timezone.utc).isoformat(),
              "credits_usd": None, "open_trades": 0, "edge_verdict": "no_simple_rule_edge",
              "evidence": "210,384 M5 gold bars, 4 families, walk-forward"}
