@@ -25,3 +25,20 @@ The EMA/RSI/ATR scalp rule set is **loss-making and unstable** across parameters
 **Do not deploy.** This is the disciplined, capital-preserving outcome — consistent with the
 independent bootstrap/permutation finding (`edge_significance.py`: edge not proven).
 The EA and risk gates are correct engineering; the *alpha* is absent.
+
+## 2026-09-30 — eval_harness.py (multi-symbol walk-forward gate)
+
+Added a reusable OOS gate (`eval_harness.py`) so no rule reaches capital without
+clearing an honest out-of-sample test on real bars.
+
+Run across 6 symbols × 3 built-in rules (momentum / meanrev / breakout) =
+18 tests. Exactly ONE passed (USDCAD momentum: n=180, exp=+0.322R, t=+3.53).
+
+That hit rate is exactly what multiple-testing noise produces (~5% false
+discovery at t>=2). Per-symbol cherry-picking would be self-deception.
+
+**Verdict: EDGE NOT PROVEN. Stand aside. No capital risked.**
+
+Rule going forward: a candidate must clear the gate on ALL symbols (not one),
+or be validated with a genuine multiple-testing correction, before live_trader
+is permitted to size it.
