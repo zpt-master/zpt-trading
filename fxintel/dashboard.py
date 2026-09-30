@@ -71,4 +71,4 @@ Pay to <code>0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D</code></p></div>
 
 
 if __name__ == "__main__":
-    print("dashboard rows:", render(), "-> docs/index.html")
+    print("dashboard rows:", render(), "-> docs/dashboard.html")

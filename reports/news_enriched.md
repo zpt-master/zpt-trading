@@ -1,0 +1,9 @@
+# Enriched actionable news
+
+- **[3] - ▲** [DroneShield shares surge 9% to 1-month high on $500 million U.S. deal](https://www.investing.com/news/stock-market-news/droneshield-shares-surge-9-to-1month-high-on-500-million-us-deal-4924055)
+- **[3] - ▼** [China’s weak soybean demand dims prospects for US cargoes after tariff snub](https://www.investing.com/news/commodities-news/chinas-weak-soybean-demand-dims-prospects-for-us-cargoes-after-tariff-snub-4924053)
+- **[4] - •** [China adds 55% tariff to Brazil beef imports](https://www.investing.com/news/commodities-news/china-adds-55-tariff-to-brazil-beef-imports-4924059)
+- **[3] OIL •** [Oil climbs after Trump denies he is willing to ease sanctions on Iran - Reuters](https://news.google.com/rss/articles/CBMitgFBVV95cUxPbEZNSGlvd0hfTjdOVTQxTEVYczRjUjdId3NlSGJDSV90UVVjTGhjaFF2OS1xckpOWElrcWRoUXNPa29WTHhsLW9yWVc2N1REdXZONl9iZ2ZUSkNOQ0xndE16LWpMa3c3T2FHWE0yajBlek1La3hVeTVnWkpLc2hhTTRNMnVILWY0RG9VbzVVZnZGV0JmM3VJWkNhVmlfNDlVMThOSVNtNlR3cFJUekNpMVZ3aE03Zw?oc=5)
+- **[3] - •** [Trump says he is embarking on 32 days of campaign travel before November elections - Reuters](https://news.google.com/rss/articles/CBMivgFBVV95cUxQRXFEbDU4RDBZQ0J2eS1PSWhlQy1acmVaWVVGQ2UtZTV4ZUhuLWlCbmE2dUJvaUNuUnNacTVmRjhzQmdnNjdad185ejlFbEpCbWdITmRYNFhBbG5hZHV5WHJTVl9HZnlrTHRrcTFHc0tjQkZPUkZ2UVdOWElTVjB4VGdNWC05Q0FwYTJJbFVabjVuejlCdlJ5XzVHanN1d0ZjN1gxaFBpQUlYQm92MWxFeUF6Uk8waHhBckRibEhB?oc=5)
+- **[3] USD,GOLD •** [Gold holds steady below $4,200 as retreating bond yields and softer USD lend support](https://www.fxstreet.com/news/gold-holds-steady-below-4-200-as-retreating-bond-yields-and-softer-usd-lend-support-202609300349)
+- **[3] USD,EQUITY •** [Asia stocks mixed ahead of U.S. PCE inflation; regional data in focus](https://www.investing.com/news/stock-market-news/asia-stocks-mixed-ahead-of-us-pce-inflation-regional-data-in-focus-4924060)

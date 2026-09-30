@@ -22,6 +22,12 @@ POS = r"\b(rally|surge|soar|jump|gain|beat|strong|upgrade|record high|bullish|re
 NEG = r"\b(plunge|crash|fall|drop|slump|miss|weak|downgrade|bearish|recession|sell-?off|fear|warn|loss)\b"
 
 
+def _clean_title(t: str) -> str:
+    t = re.sub(r"^\s*\*+\s*\[?", "", t or "")
+    t = t.replace("**", "").strip()
+    return t
+
+
 def tag(title: str):
     t = (title or "").lower()
     assets = [k for k, pat in INSTR.items() if re.search(pat, t)]
@@ -36,6 +42,7 @@ def enrich(items):
     out = []
     for it in items:
         assets, pol = tag(it.get("title", ""))
+        it = dict(it); it["title"] = _clean_title(it.get("title", ""))
         it = dict(it); it["assets"] = assets; it["polarity"] = pol
         it["rank"] = round(float(it.get("score", 0)) * (1 + abs(pol)), 2)
         out.append(it)
@@ -54,16 +61,31 @@ def to_markdown(items, top=25):
 
 
 if __name__ == "__main__":
-    src = sys.argv[1] if len(sys.argv) > 1 else "reports/news_brief.json"
-    if os.path.exists(src):
-        items = json.load(open(src))
-        if isinstance(items, dict):
-            items = items.get("items", [])
+    # Real data sources, in priority order (docs/brief.json is what autopublish writes)
+    candidates = [
+        "docs/brief.json",
+        "reports/news_brief.json",
+        "reports/daily_brief.json",
+    ]
+    items = []
+    used = None
+    for src in candidates:
+        if os.path.exists(src):
+            try:
+                data = json.load(open(src))
+            except Exception:
+                continue
+            if isinstance(data, dict):
+                data = data.get("actionable") or data.get("items") or []
+            if data:
+                items = data
+                used = src
+                break
+    if items:
         en = enrich(items)
-        open("reports/news_enriched.md", "w").write("# Enriched actionable news\n\n" + to_markdown(en) + "\n")
-        print(f"enriched {len(en)} items -> reports/news_enriched.md")
+        os.makedirs("reports", exist_ok=True)
+        open("reports/news_enriched.md", "w").write(
+            "# Enriched actionable news\n\n" + to_markdown(en) + "\n")
+        print(f"enriched {len(en)} items from {used} -> reports/news_enriched.md")
     else:
-        print("no source; demo:", to_markdown(enrich([
-            {"title": "Gold surges as Fed signals rate cuts", "score": 5, "url": "#"},
-            {"title": "Oil plunges on OPEC supply fears", "score": 4, "url": "#"},
-        ])))
+        print("no real source found; nothing enriched (is autopublish/brief running?)")
