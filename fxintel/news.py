@@ -27,10 +27,10 @@ DB = os.path.join(REPORTS, "news.sqlite")
 UA = {"User-Agent": "Mozilla/5.0 (compatible; ZptIntel/1.0)"}
 
 FEEDS = {
-    "reuters-business": "https://feeds.reuters.com/reuters/businessNews",
-    "reuters-markets": "https://feeds.reuters.com/reuters/marketsNews",
+    "reuters-gn": "https://news.google.com/rss/search?q=when:1d+reuters+business&hl=en-US&gl=US&ceid=US:en",
+    "marketwatch": "https://feeds.content.dowjones.io/public/rss/mw_topstories",
     "cnbc-markets": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258",
-    "forexlive": "https://www.forexlive.com/feed/news",
+    "fxstreet": "https://www.fxstreet.com/rss/news",
     "coindesk": "https://www.coindesk.com/arc/outboundfeeds/rss/",
     "cointelegraph": "https://cointelegraph.com/rss",
     "investing-news": "https://www.investing.com/rss/news.rss",
