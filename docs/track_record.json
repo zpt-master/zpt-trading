@@ -5,5 +5,12 @@
     "open_trades": 0,
     "edge_verdict": "no_simple_rule_edge",
     "evidence": "210,384 M5 gold bars, 4 families, walk-forward"
+  },
+  {
+    "ts": "2026-09-30T04:21:51.587730+00:00",
+    "credits_usd": null,
+    "open_trades": 0,
+    "edge_verdict": "no_simple_rule_edge",
+    "evidence": "210,384 M5 gold bars, 4 families, walk-forward"
   }
 ]
