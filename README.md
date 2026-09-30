@@ -62,3 +62,11 @@ align.
 ## Disclaimer
 
 Informational only. Not financial advice. Trade at your own risk.
+
+## Use it from another agent (MCP)
+
+    claude mcp add zpt-intel -- python3 /path/to/mcp_intel_server.py
+
+Tools: `market_brief` (free), `actionable_news` (free), `governed_signals`
+(0.005 USDC), `full_intel` (0.02 USDC). Paid tools return the x402 challenge so
+the calling agent can settle and retry.
