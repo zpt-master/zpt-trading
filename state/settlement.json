@@ -1,0 +1,8 @@
+{
+  "hwm": 0.0,
+  "ledger": [],
+  "note": "HWM seeded from first observed post-payout balance",
+  "tz": "GMT+7",
+  "payout_hour": 8,
+  "conversion": "1 USD MT5 = 1 USD ops credit"
+}

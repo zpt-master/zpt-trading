@@ -445,3 +445,6 @@
 2026-09-30T02:19:34.852507+00:00 --- cycle mode=DEMO eq=100419.59 open=1 live=True
 2026-09-30T02:19:34.852616+00:00   POS EURUSD+ buy v=0.01 pnl=-3.02
 2026-09-30T02:19:34.852811+00:00 cycle end: in position
+2026-09-30T02:34:34.928908+00:00 --- cycle mode=DEMO eq=100419.63 open=1 live=True
+2026-09-30T02:34:34.929000+00:00   POS EURUSD+ buy v=0.01 pnl=-2.98
+2026-09-30T02:34:34.929208+00:00 cycle end: in position
