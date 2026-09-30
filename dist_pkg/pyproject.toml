@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zpt-intel"
+version = "1.0.0"
+description = "Risk-governed FX market intelligence + actionable news brief, x402-payable"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "ZptMaster"}]
+
+[project.scripts]
+zpt-intel = "zpt_intel.cli:main"

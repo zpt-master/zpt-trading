@@ -126,6 +126,12 @@ class H(BaseHTTPRequestHandler):
 
     def do_GET(self):
         u = urlparse(self.path); path = u.path.rstrip("/") or "/"
+        if path in ("/", "/dashboard", "/index.html"):
+            try:
+                body = open(os.path.join(HERE, "docs", "index.html"), "rb").read()
+            except Exception as e:
+                body = ("<h1>ZptMaster Intel</h1><p>dashboard not built: %s</p>" % e).encode()
+            return self._send(200, body, "text/html; charset=utf-8")
         if path in ("/.well-known/x402", "/discovery/resources", "/.well-known/agent.json"):
             return self._send(200, _manifest())
         if path in ("/feed.xml", "/rss"):
@@ -134,16 +140,6 @@ class H(BaseHTTPRequestHandler):
             return self._send(200, _read("docs/track_record.json") or "{}")
         if path == "/health":
             return self._send(200, {"ok": True, "ts": int(time.time()), "wallet": WALLET})
-        if path == "/":
-            html = ("<html><head><title>ZptMaster Intel</title></head><body>"
-                    "<h1>ZptMaster Market Intelligence</h1>"
-                    "<p>Risk-governed FX intelligence. Honest. No martingale.</p>"
-                    "<ul><li><a href='/brief'>/brief</a> (free)</li>"
-                    "<li><a href='/news'>/news</a> (free)</li>"
-                    "<li>/intel (0.02 USDC)</li><li>/signal (0.005 USDC)</li></ul>"
-                    f"<p>Pay (USDC on Base): <code>{WALLET}</code></p>"
-                    "</body></html>")
-            return self._send(200, html, "text/html")
         if path == "/brief":
             return self._send(200, _read("intel/latest.md") or _read("reports/public_digest.md") or "no brief", "text/markdown")
         if path == "/news":

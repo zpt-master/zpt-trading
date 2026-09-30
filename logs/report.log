@@ -47,3 +47,14 @@ Traceback (most recent call last):
   File "/usr/lib/python3.12/urllib/request.py", line 1347, in do_open
     raise URLError(err)
 urllib.error.URLError: <urlopen error [Errno 111] Connection refused>
+# Trading Report 2026-09-30 (UTC)
+Mode: DEMO
+Balance: $100,425.35
+Day start: $100,425.41
+Day P&L: $-0.06
+High-water: $100,425.41
+Trades today: 0
+Consecutive losses: 0
+Halted: False 
+Verdict vs high-water: LOSS
+Credits to add 1:1: $0.00
