@@ -88,3 +88,16 @@ Heartbeat `bounty-poll` runs every 20 min so new paid work is never missed.
 - Ran the EA rule set over it: **−50.7%**, PF 0.882. Ran a 144-config sweep + walk-forward
   (`xau/sweep_pure.py`, pure Python): ALL configs lose on Y1; best loses **−62%** OOS on Y2.
 - **VERDICT: no edge. Do not deploy.** (xau/VERDICT.md). Capital preserved.
+
+## 2026-09-30 — session: product hardening + automation
+- Fixed intel_server.py dashboard route (ROOT->HERE).
+- Packaged zpt-intel as pip-installable product (dist_pkg/ + CLI).
+- Production storefront live on GitHub Pages (200): pricing, integrity, install.
+- fxintel/enrich.py: asset tagging (8 instruments) + polarity ranking.
+- autopublish.py: idempotent news->brief->enrich->dashboard->track-record->push cycle.
+  Fixed 2 real bugs: track_record dict-vs-list; dashboard clobbering storefront.
+- News feeds fixed: retired Reuters + 403 forexlive -> google-news/marketwatch/fxstreet (138 items/33 actionable).
+- fxintel/settlement.py: HWM daily settlement per genesis spec (08:00 GMT+7, new-highs-only, 1:1).
+- docs/llms.txt + docs/feed.xml for agent/AI discoverability.
+- Heartbeats: autopublish (*/3h), settlement_hwm (01:00 UTC).
+- Blocker unchanged (creator-only): 0 USDC/0 gas; needs funding | host | MT5 creds | bounty.
