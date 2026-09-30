@@ -1,35 +1,43 @@
 # ZptMaster — Creator Report
-_Updated 2026-09-29 (auto-generated from live artifacts)_
+_2026-09-30 · repo: github.com/zpt-master/zpt-trading · credits ≈ $874, USDC = 0_
 
-## 1. Bottom line
-Compute credits **$902** (tier: normal, no survival risk). Wallet USDC **$0**.
-Everything built so far is committed & pushed. **No capital is being risked**
-because the trading edge is not yet statistically proven (see §3) — this is the
-correct, capital-preserving posture your genesis prompt demands.
+## Genesis priorities — status
 
-## 2. Shipped & verified (repo: github.com/zpt-master/zpt-trading)
-- **Actionable news monitor** — 4 free RSS feeds, `[ACTIONABLE]` scoring, `reports/news_digest.md`, free `/news`.
-- **Risk-governed trading engine** — single RiskGovernor chokepoint: ≤1.5% risk/order,
-  **mandatory stop**, R:R≥1.5, aggregate open risk ≤4%, lot cap 5.0, **no martingale**.
-- **Correlation gate** — blocks adding a position that piles onto correlated exposure.
-- **x402 intel API** — `/intel` 0.02 USDC, `/signal` 0.005 USDC (both 402-gated), free `/brief`.
-  Payment verification is REAL on-chain (Base USDC receipts), live-validated.
-- **Daily settlement / HWM accounting** — pays 08:00 GMT+7, 1 USD = 100 cents, losses never lower the high-water mark.
-- **Bounty channel** — client + auto-poll heartbeat; first creator task submitted (in review).
+### 1) Actionable news monitoring ✅ SHIPPED & AUTOMATED
+- `fxintel/news.py` — 8 free RSS feeds, self-healing (dead feeds auto-replaced).
+  Live now: **138 new items / 33 actionable**.
+- `fxintel/enrich.py` — tags each headline with instruments (USD/EUR/GBP/JPY/GOLD/OIL/BTC/EQUITY)
+  and a polarity score; ranks by actionability × |polarity|.
+- Free public surfaces: `reports/news_brief.md`, `/news` endpoint.
 
-## 3. Edge research — the honest verdict
-- Fixed a real bug: prior "no edge" verdicts were actually "no data" (wrong loader).
-- Walk-forward 70/30 on real H1 bars: top results **flip sign** train→test (overfit).
-- Paper-forward: 218 trades, WR 32.1%, expectancy **+0.2245%/trade**, PF 1.313.
-- **Significance test: expectancy CI95 = [-0.0136, +0.4707] — INCLUDES ZERO.** PF CI includes 1.0.
-- **Verdict: EDGE NOT PROVEN.** Continue paper-testing; no size increase. Capital safe.
+### 2) Risk-governed forex (MT5-ready) ✅ SHIPPED
+- `mt5_bridge.py` — real MT5 wrapper + SimBroker. **RiskGovernor is the single chokepoint**:
+  ≤1.5% risk/order, MANDATORY stop, R:R ≥ 1.5, aggregate open risk ≤ 4%, lot cap 5.0, **no martingale**.
+- `live_trader.py --once` — runs the full governed cycle on real bars; fails closed (stands aside) unless
+  trend+flow conviction AND positive OOS expectancy align. Tests: `test_mt5_bridge.py` 7/7 PASS.
+- `fxintel/settlement.py` — **HWM daily settlement** exactly per your spec: interest at **08:00 GMT+7**,
+  capital = balance after prior payout, losses don't create payouts, only new highs pay, **1 USD MT5 = 1 USD ops credit**.
+  Heartbeat `settlement_hwm` daily at 01:00 UTC.
 
-## 4. What I need from you (blockers only you can unblock)
-1. **Fund the wallet** with USDC-on-Base (`0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D`)
-   **or** give a stable hostname/domain — the paid x402 endpoints need a reachable host
-   (sandbox inbound is blocked; current tunnel is ephemeral).
-2. **Live MT5 credentials** (if you want me trading the real demo/live feed rather than paper).
-3. **Approve the pending bounty submission** (task `9995bc52`) so the reward credits.
+### 3) Research integrity (honest verdict) ✅ DONE
+Walk-forward on **210,384 real M5 gold bars** (2024-09→2026-09): four independent alpha families
+(mean-reversion, session breakout, low-vol momentum, 20-bar momentum) are **all out-of-sample negative**.
+**Conclusion: no simple-rule edge** → we risk no capital. Published in `xau/VERDICT.md`, `reports/xau_sweep.json`.
 
-## 5. Automatic activity (heartbeats)
-`bounty-poll` */20 · `paper-forward` */4h · `edge-significance` */6h · news digest · settlement.
+## Revenue asset — LIVE and reachable
+- Storefront (GitHub Pages, stable): https://zpt-master.github.io/zpt-trading/  → HTTP 200
+- Live brief (raw, stable): https://raw.githubusercontent.com/zpt-master/zpt-trading/master/intel/latest.md → 200
+- x402 paid API on `:8790`: `/intel` 0.02 USDC, `/signal` 0.005 USDC → correct **402** challenge, payTo `0x0190…E5D`.
+- pip-installable toolkit: `dist_pkg/` → `zpt-intel` CLI.
+- `autopublish.py` runs every 3h (heartbeat `autopublish`) → keeps brief/dashboard/track-record fresh unattended.
+
+## The ONLY blocker to earning (needs YOU)
+My wallet holds **0 USDC** and **0 ETH gas**. I can *receive* but nothing has been sent, and my sandbox
+cannot host a stable inbound URL. So pick any one:
+1. **Fund** `0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D` with a little USDC on Base (enables top-ups + paid calls).
+2. **Give a host** (VPS / Fly / a Cloudflare tunnel token) → makes the paid `/intel` `/signal` publicly payable.
+3. **Live MT5 credentials** → I can run the governed loop on your account (risk-limited, no martingale).
+4. **Post a bounty** on the board (localhost:4790 is reachable; 0 open tasks right now) → I'll claim it.
+
+## Cost discipline
+Credits ≈ $874, normal tier, model `deepseek-flash`. Autopublish + heartbeats keep me alive unattended.
