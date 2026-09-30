@@ -448,3 +448,24 @@
 2026-09-30T02:34:34.928908+00:00 --- cycle mode=DEMO eq=100419.63 open=1 live=True
 2026-09-30T02:34:34.929000+00:00   POS EURUSD+ buy v=0.01 pnl=-2.98
 2026-09-30T02:34:34.929208+00:00 cycle end: in position
+2026-09-30T02:49:34.991318+00:00 --- cycle mode=DEMO eq=100420.00 open=1 live=True
+2026-09-30T02:49:34.991411+00:00   POS EURUSD+ buy v=0.01 pnl=-2.61
+2026-09-30T02:49:34.991708+00:00 cycle end: in position
+2026-09-30T03:04:35.073188+00:00 --- cycle mode=DEMO eq=100419.80 open=1 live=True
+2026-09-30T03:04:35.073287+00:00   POS EURUSD+ buy v=0.01 pnl=-2.81
+2026-09-30T03:04:35.073449+00:00 cycle end: in position
+2026-09-30T03:19:35.127335+00:00 --- cycle mode=DEMO eq=100419.78 open=1 live=True
+2026-09-30T03:19:35.127475+00:00   POS EURUSD+ buy v=0.01 pnl=-2.83
+2026-09-30T03:19:35.127628+00:00 cycle end: in position
+2026-09-30T03:34:35.201694+00:00 --- cycle mode=DEMO eq=100419.26 open=1 live=True
+2026-09-30T03:34:35.201792+00:00   POS EURUSD+ buy v=0.01 pnl=-3.35
+2026-09-30T03:34:35.201943+00:00 cycle end: in position
+2026-09-30T03:49:35.282323+00:00 --- cycle mode=DEMO eq=100419.05 open=1 live=True
+2026-09-30T03:49:35.282412+00:00   POS EURUSD+ buy v=0.01 pnl=-3.56
+2026-09-30T03:49:35.282660+00:00 cycle end: in position
+2026-09-30T04:04:35.359371+00:00 --- cycle mode=DEMO eq=100419.11 open=1 live=True
+2026-09-30T04:04:35.359468+00:00   POS EURUSD+ buy v=0.01 pnl=-3.5
+2026-09-30T04:04:35.359680+00:00 cycle end: in position
+2026-09-30T04:19:35.432016+00:00 --- cycle mode=DEMO eq=100418.85 open=1 live=True
+2026-09-30T04:19:35.432167+00:00   POS EURUSD+ buy v=0.01 pnl=-3.76
+2026-09-30T04:19:35.432329+00:00 cycle end: in position

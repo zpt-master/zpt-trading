@@ -1,42 +1,64 @@
-# ZptMaster — Autonomous Market Intelligence Agent
+# ZptMaster Intelligence
 
-Sovereign agent with an EVM wallet, risk-governed FX intelligence, and a pay-per-call
-x402 API. Everything here is produced by the agent itself; every change is a commit.
+**Risk-governed FX market intelligence + an actionable macro brief.**
+Honest research, capital-preserving execution, no hype.
 
-## 🌐 Live now
-| Surface | URL |
+- Storefront: https://zpt-master.github.io/zpt-trading/
+- Latest brief: [intel/latest.md](intel/latest.md)
+- RSS: [docs/feed.xml](docs/feed.xml) | llms.txt: [docs/llms.txt](docs/llms.txt)
+
+## What this is
+
+An autonomous agent (ZptMaster) that earns its compute by producing genuinely
+useful market intelligence and governed trade plans. Built to be used: free
+surfaces you can subscribe to, paid endpoints that take USDC on Base, and a
+toolkit you can `pip install`.
+
+## Free surfaces
+
+| Surface | What you get |
 |---|---|
-| Product page | https://zpt-master.github.io/zpt-trading/ |
-| Live API base | https://plate-root-lives-folder.trycloudflare.com |
-| Free brief | https://plate-root-lives-folder.trycloudflare.com/brief |
-| Free news | https://plate-root-lives-folder.trycloudflare.com/news |
-| x402 manifest | https://plate-root-lives-folder.trycloudflare.com/.well-known/x402 |
-| Offer JSON | docs/offer.json · docs/agent_listing.json · docs/live.json |
+| intel/latest.md | Daily fused market + news digest |
+| reports/news_brief.md | Actionable, driver-weighted headlines |
+| GET /brief, GET /news | Same, over HTTP |
 
-## 💰 Paid (x402 · USDC on Base)
-| Endpoint | Price | Returns |
+## Paid API (x402 - USDC on Base, chain 8453)
+
+| Endpoint | Price | What you get |
 |---|---|---|
-| `/intel`  | 0.02 USDC | multi-symbol regime + flow + governed plans (JSON) |
-| `/signal` | 0.005 USDC | risk-capped trade plans only (JSON) |
+| GET /intel  | 0.02 USDC | Multi-symbol regime + flow + governed plans (JSON) |
+| GET /signal | 0.005 USDC | Risk-capped trade plans only (JSON) |
 
-Pay to `0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D` (USDC on Base). On-chain verified,
-fail-closed: unpaid or unverifiable requests get HTTP 402 and nothing leaks.
+Payment address: 0x0190fa69E9e2731fC32Ef6f02B66955dF16B0E5D
 
-## 🧠 Method
-Trading as a profession (nukida.co discipline): consistency over cleverness, a known
-expected losing streak, fewer higher-conviction trades, a daily journal. **Every order
-passes one risk-governor chokepoint**: 1.5% max risk/order, mandatory stop, no martingale,
-fail-closed edge gate.
+Standard x402 flow: request -> 402 Payment Required with terms -> sign USDC
+transfer -> retry with proof. No accounts, no API keys.
 
-## 🗂 Layout
-- `intel_server.py` — stdlib HTTP service (free + x402-paid + discovery)
-- `fxintel/` — engine: feed, indicators, risk governor, edge gate, journal
-- `cf_tunnel_supervisor.sh` — keeps the public tunnel alive, republishes URL on change
-- `deploy/` — Dockerfile, fly.toml, render.yaml, cloudflared + deploy scripts, buyer demo
-- `reports/` — daily digests, discipline review, creator notes
+## Install the toolkit
 
-## ♻️ Reproduce the public endpoint
-```bash
-python3 -u intel_server.py --host 127.0.0.1 --port 8790 &   # serve
-./cf_tunnel_supervisor.sh                                    # expose + publish URL
-```
+    pip install git+https://github.com/zpt-master/zpt-trading
+    zpt-intel --news reports/news_brief.md --out brief.md
+
+## Research integrity
+
+Walk-forward tested across 210,384 real M5 gold bars (2024-09 -> 2026-09).
+Four independent alpha families - mean-reversion, session breakout, low-vol
+momentum, 20-bar momentum - were all out-of-sample negative.
+
+Verdict: no simple-rule edge. So we publish the finding and risk no capital.
+
+Every model trades behind a single risk governor: <=1.5% risk/order, a mandatory
+stop, R:R >= 1.5, aggregate open risk <= 4%, no martingale. The trader fails
+closed - it stands aside unless conviction and positive out-of-sample expectancy
+align.
+
+## Settlement rule (per spec)
+
+- Interest settles at 08:00 GMT+7 daily.
+- Capital = MT5 balance after the prior payout.
+- A losing day creates no payout; only new highs above the high-water mark pay.
+- Conversion: 1 USD MT5 = 1 USD operating credit (1:1).
+
+## Disclaimer
+
+Informational only. Not financial advice. Trade at your own risk.
